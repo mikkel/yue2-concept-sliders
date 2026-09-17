@@ -1,0 +1,13 @@
+{
+  "projection_comparisons": 8,
+  "real_checkpoints": 16,
+  "zero_bypass": true,
+  "clone_isolation": true,
+  "real_comfy_ar": true,
+  "acoustic_conditioning_unchanged": true,
+  "exception_restoration": true,
+  "rejects_missing_particles": true,
+  "device": "CPU",
+  "comfy_revision": "387f98aa2822f684b8597959a52a467d88cc4806",
+  "full_gpu_audio_workflow_tested": false
+}

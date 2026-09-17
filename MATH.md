@@ -1,0 +1,103 @@
+## How the sliders learn
+
+Each control learns from four pairs of sound descriptions. The frozen YuE2 model supplies a target hidden state from the positive description; the adapted model receives the neutral description and the same lyrics. Training acts on the final prompt state, at the start of music generation. The base model, acoustic synthesis and VAE remain frozen.
+
+### One strength control, with learned particle routing
+
+Each autoregressive attention projection gets a nonlinear residual branch. For an input vector `x`, first compute rank-8 features and route them through one shared particle cloud:
+
+$$
+\begin{aligned}
+a &= Vx, & q &= \rho(a), \\
+w &= \operatorname{softmax}\!\left(\frac{Pq}{\sqrt{d_p}}\right),
+& z &= P^\top w, \\
+f_s(x) &= f_0(x) + s\,\frac{\alpha}{r}\,U\phi([a,z]).
+\end{aligned}
+$$
+
+Here `f₀` is the frozen projection, `V` and `U` are learned down/up projections, and `s` is the slider strength. The rank and alpha are both **8**, so their ratio is 1. The shared cloud `P` contains **128 learned particles in 4 dimensions** (`dₚ = 4`). Each projection has its own router `ρ` and routed MLP `φ`: three hidden layers of width 16 and 48, respectively, with LeakyReLU slope 0.2.
+
+At **0**, the implementation bypasses the entire branch and returns the base projection exactly. At **1**, it applies the trained positive endpoint. Intermediate values scale the residual; the resulting music need not change linearly. Negative strength is an untrained canary. The up projection starts at zero, so a fresh adapter initially preserves the base model. Learned routing runs during ordinary inference as well as training; all projections in one slider share the same cloud.
+
+### Normalize the error against the target description
+
+Let `hᵢ⁺` be the frozen model's final prompt state for training row `i` under the positive caption, and `hᵢθ` the adapted state under its neutral caption. The lyric sheet is identical within the pair. Normalize each coordinate using the training positive states only:
+
+$$
+\begin{aligned}
+T(h) &= \frac{h-\mu_+}{\max(\operatorname{std}_{\mathrm{sample}}(h^+),10^{-4})}, \\
+e_i &= T(h_i^\theta)-T(h_i^+).
+\end{aligned}
+$$
+
+The mean and sample standard deviation are fixed after preparation. The floor and division act coordinate by coordinate. Held-out prompts never enter these statistics.
+
+### Learn with a paired-error critic
+
+At update `t`, draw Gaussian noise and add the adapted model's normalized error to a copy of the **same** noise:
+
+$$
+\begin{aligned}
+\sigma_t &= 0.03^{\min(t/8000,\,1)}, &
+n &\sim \mathcal N(0,\sigma_t^2 I), \\
+x_{\mathrm{real}} &= n, &
+x_{\mathrm{fake}} &= n+e_i.
+\end{aligned}
+$$
+
+The critic `D` is a scalar MLP with three width-48 hidden layers. Its relativistic loss encourages a higher score for the noise-only input than for noise plus error. The adapter reverses that ordering:
+
+$$
+\begin{aligned}
+\mathcal L_D &= \mathbb E\!\left[
+\operatorname{softplus}\big(D(x_{\mathrm{fake}})-D(x_{\mathrm{real}})\big)
+\right] + \mathcal R_{\mathrm{cap}}, \\
+\mathcal L_G &= \mathbb E\!\left[
+\operatorname{softplus}\big(D(x_{\mathrm{real}})-D(x_{\mathrm{fake}})\big)
+\right] + \mathcal V(P_S).
+\end{aligned}
+$$
+
+`softplus(u) = log(1 + exp(u))`. Each expectation averages **64 independently sampled row/noise pairs**, with training rows sampled with replacement. The critic and generator draw separate batches. The critic updates first; the generator then recomputes its objective through the updated critic with the critic's parameters frozen. Repeated deterministic prompt rows share a model forward, while each noise draw contributes separately to the loss.
+
+### Cap steep critic gradients
+
+The cap penalizes input-gradient norms only above 1, on both real and fake coordinates:
+
+$$
+\mathcal R_{\mathrm{base}} = \frac{1}{2}
+\sum_{u\in\{x_{\mathrm{real}},x_{\mathrm{fake}}\}}
+\mathbb E\!\left[
+\max\!\left(0,\lVert\nabla_u D(u)\rVert_2-1\right)^2
+\right].
+$$
+
+The implementation uses exact autograd and computes the norm as `sqrt(sum(g²) + 10⁻¹²)`. The cap coefficient is **1**. It is evaluated every fourth update, with **4 × Rbase** on those updates and zero on the others. This lazy schedule retains the penalty's average weighting.
+
+### Keep the particle cloud spread out
+
+For each generator update, sample **64 of the 128 particles without replacement**. Let `Pₛ` be this subset and `C` its sample covariance matrix, using denominator 63. The particle regularizer is:
+
+$$
+\mathcal V(P_S) =
+\frac{1}{d_p}\sum_{j=1}^{d_p}
+\max\!\left(0,1-\sqrt{C_{jj}+10^{-4}}\right)
++\frac{1}{d_p}\sum_{j\ne k} C_{jk}^{\,2},
+\qquad d_p=4.
+$$
+
+The first term penalizes collapsed particle coordinates; the second penalizes covariance between different coordinates. Its coefficient is **1**. Gradients from the adversarial loss also reach the particles through the router. The generator objective has no additional output MSE, feature-matching, lyric-hold or ending-supervision term.
+
+### Export the moving average
+
+After each generator update, average every learned adapter parameter, including the routers and particle cloud:
+
+$$
+\bar\theta_t = 0.995\,\bar\theta_{t-1} + 0.005\,\theta_t.
+$$
+
+The published files contain this **EMA at update 1,200**. Adam uses betas `(0, 0.999)`, zero weight decay and constant learning rates: **0.0006** for the adapter projections/MLPs/routers, **0.006** for the particles, and **0.0009** for the critic. The shared cloud is registered and optimized once per slider.
+
+The 8,000-update noise schedule is not compressed to the release budget: at update 1,200, the noise standard deviation is still about **0.591**. These are fixed-budget experimental checkpoints. The equations and hidden-state diagnostics do not establish an audio-quality, lyric-preservation or natural-ending guarantee. Automatic duration in the Space uses the native sampler's ending decision; it does not add an ending loss to these trained weights.
+
+[Exact method and architecture record](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/FORMULATION.md) · [Checkpoint and audio audit](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/evidence/particle-1200-v1/integrity.json) · [Native loader source hashes](source-provenance.json)

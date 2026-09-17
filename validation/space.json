@@ -1,0 +1,29 @@
+{
+  "concept": "female",
+  "strength": 1,
+  "seed": 1709,
+  "duration_mode": "automatic",
+  "elapsed_seconds": 28.23,
+  "off": null,
+  "on": {
+    "duration_seconds": 58.199,
+    "duration_mode": "automatic",
+    "max_tokens": 9000,
+    "semantic_tokens": 1455,
+    "semantic_truncated": false,
+    "semantic_timing": {
+      "seconds": 25.36802628589794,
+      "prefill_seconds": 1.0237052701413631,
+      "ttft_seconds": 1.161900871898979,
+      "output_tokens": 1456,
+      "content_tokens": 1455,
+      "output_tps": 57.39508401603119,
+      "prefix_tokens": 180,
+      "cfg_branches": 2,
+      "execution": "cuda_graph",
+      "attention": "flash"
+    },
+    "elapsed_seconds": 28.23
+  },
+  "note": "Same caption, lyrics and seed. YuE2 chooses when each song ends."
+}
