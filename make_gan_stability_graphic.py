@@ -25,6 +25,7 @@ RUNS = [
     ('particle', 'metal-yue2-particle-bridge-s7-20260917',
      'With particles · new recipe', '#7950b4'),
 ]
+DISPLAY_RUN_IDS = ('plain-original', 'particle')
 
 
 def digest(path):
@@ -83,7 +84,8 @@ def collect():
         writer = csv.DictWriter(stream, fieldnames=list(all_rows[0]), lineterminator='\n')
         writer.writeheader()
         writer.writerows(all_rows)
-    evidence = dict(description='Historical native YuE2 training comparison; not a particle-only ablation',
+    evidence = dict(description='Selected historical native YuE2 comparison; not a particle-only ablation',
+                    displayed_runs=list(DISPLAY_RUN_IDS),
                     common=common, metrics=dict(g_adv='Logged generator adversarial term; excludes particle VIC',
                     cos_pos='Logged cosine to the positive-caption hidden target, not an audio metric',
                     grad_norm='Logged generator parameter gradient norm; different architectures have different parameters'),
@@ -103,10 +105,12 @@ def render(all_rows, records):
                          'ytick.labelsize': 13, 'svg.fonttype': 'none', 'svg.hashsalt': 'yue2-gan-stability'})
     fig, axes = plt.subplots(2, 1, figsize=(7.0, 9.6), sharex=True,
                              gridspec_kw={'height_ratios': [1.3, 1]})
-    fig.subplots_adjust(left=.15, right=.96, top=.76, bottom=.175, hspace=.24)
+    fig.subplots_adjust(left=.15, right=.96, top=.79, bottom=.175, hspace=.24)
     fig.suptitle('YuE2 generator training', x=.15, y=.97, ha='left', fontsize=22, fontweight='bold')
     fig.text(.15, .927, 'Metal · seed 7 · unsmoothed training logs', fontsize=13.5, color='#45566b')
     for run_id, name, label, color in RUNS:
+        if run_id not in DISPLAY_RUN_IDS:
+            continue
         rows = [row for row in all_rows if row['run'] == run_id]
         for ax, key in zip(axes, ('g_adv', 'cos_pos')):
             ax.plot([r['step'] for r in rows], [r[key] for r in rows], label=label,
@@ -138,11 +142,12 @@ def render(all_rows, records):
     handles, labels = axes[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc='upper left', bbox_to_anchor=(.13, .897), frameon=False,
                fontsize=13.5, handlelength=2.5, labelspacing=.65)
-    fig.text(.15, .041, 'Historical recipes: architecture, loss and rates differ.\n'
-             'The slower plain-LoRA control also avoids the spike.', fontsize=12, color='#45566b')
+    fig.text(.15, .041, 'Selected recipes: architecture, loss and rates differ.\n'
+             'This is not a matched particle-only ablation.', fontsize=12, color='#45566b')
     metadata = {'Title': 'YuE2 generator training: historical plain and particle recipes',
-                'Description': 'All logged updates, with no smoothing. The original plain LoRA spikes at step 373. '
-                               'The slower plain control is also stable in this window; this is not a particle-only ablation.',
+                'Description': 'All logged updates for the two displayed runs, with no smoothing. '
+                               'The original plain LoRA spikes at step 373; the particle run continues to 1200. '
+                               'This is not a matched particle-only ablation.',
                 'Date': None}
     fig.savefig(OUT / 'gan-training-stability.svg', metadata=metadata, facecolor='white')
     fig.savefig(OUT / 'gan-training-stability.png', dpi=180, facecolor='white')

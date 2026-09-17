@@ -8,7 +8,7 @@ do not replace the Space defaults.
 
 ## What is being removed
 
-The particle teachers were introduced as part of a GAN-stabilization recipe. See [the historical generator-training curves](GAN_STABILITY.md) for the observed spike, the particle run and the slower plain-LoRA control.
+The particle teachers were introduced as part of a GAN-stabilization recipe. See [the historical generator-training curves](GAN_STABILITY.md) for the original plain-LoRA spike and the particle run.
 
 ### Ordinary LoRA versus our particle adapter
 
