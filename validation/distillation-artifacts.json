@@ -1,0 +1,29 @@
+{
+  "tag": "distilled-rank8-20260917",
+  "experimental": true,
+  "assets": [
+    {
+      "name": "yue2-ordinary-loras-comfyui.zip",
+      "bytes": 85872297,
+      "sha256": "261ca503e7ed904e417967be8d1717a9ea49526661892bb7776cd0ed872c9271"
+    },
+    {
+      "name": "yue2-ordinary-loras-native.zip",
+      "bytes": 192059574,
+      "sha256": "d832146b82186ba674a1a44d6fff323ca0fefd027a5781176ba1f692281d7526"
+    },
+    {
+      "name": "yue2-distillation-comparisons.zip",
+      "bytes": 234355042,
+      "sha256": "33463df0810fa6153646452079191c98591c446f736e0cbcca1fa4ada1423485"
+    }
+  ],
+  "teacher_release": "ntc-ai/yue2-concept-sliders:particle-1200-v1",
+  "converter_commit": "a5c3dd8a9cdc34a86d633b9e1aed5e7efe4bc489",
+  "source_hashes": {
+    "distill_yue2_particles.py": "afe436c323e98bc90eb7595b27475a4f323ebee36637ebf660adae8c3b36506f",
+    "refine_yue2_distillation.py": "68da97b02bcd2855f9707e956befc50bdc3341435f96dec935463a1a2147a276",
+    "report_yue2_distillation.py": "e38040bdcfe063603efb6d5cbac72def6c1fcc0d7fd4ee5cdd7ccca3fd2acdb2",
+    "verify_yue2_distillation.py": "729829b4a5f0d12184bb73c6cc11ee5f1072afa0bb479d90b4805907b656e53c"
+  }
+}

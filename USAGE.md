@@ -13,7 +13,7 @@ import torch
 from huggingface_hub import hf_hub_download
 from yue2 import YuE2Pipeline
 from yue2.protocol import SongRequest
-from slider_runtime import ParticleSlider, attention_targets
+from slider_runtime import YuE2Slider, attention_targets
 
 repo = "ntc-ai/yue2-concept-sliders"
 catalog = json.loads(Path(hf_hub_download(repo, "catalog.json")).read_text())
@@ -30,7 +30,7 @@ with YuE2Pipeline.from_pretrained(
     targets = attention_targets(model)
     originals = {name: module.forward for name, module in targets.items()}
     try:
-        adapter, metadata = ParticleSlider.load(model, path)
+        adapter, metadata = YuE2Slider.load(model, path)
         assert metadata["model_identity"] == pipe.weights["mot"]
         adapter.eval().requires_grad_(False)
         request = SongRequest(
@@ -52,10 +52,20 @@ with YuE2Pipeline.from_pretrained(
 
 For Off/On comparisons, repeat with the same request and seed at scales `0` and `1`. Scale `0.5` interpolates the adapter residual; negative strength is not a trained opposite. The example uses native automatic stopping with the upstream 9,000-token guard. For an optional approximately 20-second maximum, pass `sampling={"max_tokens": 500, "min_tokens": 200}` to `generate_semantic`; that cap can cut a musical phrase short.
 
-Use `backend="torch-eager"` for the simple reference path, or `backend="torch"` for the upstream CUDA-graph path now tested in the Space. Keep `quantization="none"` and `offload_ar=False`. Adapter hooks must be active during AR generation, including graph capture, and removed before NAR synthesis. Standard LoRA and PEFT loaders do not implement the routed MLP or shared particle cloud. Do not drop those tensors or merge the checkpoint into the base model.
+Use `backend="torch-eager"` for the simple reference path, or `backend="torch"` for the upstream CUDA-graph path now tested in the Space. Keep `quantization="none"` and `offload_ar=False`. Adapter hooks must be active during AR generation, including graph capture, and removed before NAR synthesis. For the original particle checkpoints, standard LoRA and PEFT loaders do not implement the routed MLP or shared particle cloud. Do not drop those tensors or merge the checkpoint into the base model.
+
+## Experimental ordinary LoRAs
+
+Download the native archive from the [distillation release](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917).
+Use the current `slider_runtime.py` and the same example above, replacing the
+checkpoint path with your local `metal_distilled_refined_rank8.safetensors`.
+`YuE2Slider.load` validates and loads both the original particle format and the
+ordinary LoRA format. Keep the adapter removed before acoustic synthesis for
+AR-only comparisons. See [DISTILLATION.md](DISTILLATION.md) for approximation
+quality and the broader acoustic-prefix scope of standard ComfyUI LoRA loading.
 
 ## ComfyUI
 
-Install our [YuE2 Concept Slider custom node](comfyui/ntc_yue2_sliders/README.md), then connect it between the native YuE2 checkpoint's CLIP output and YuE2 Generate Music. Use the original files under `weights/particle-1200-v1/`; no conversion is needed. The [ZIP](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/comfyui/ntc_yue2_sliders.zip) includes the node and a complete workflow. Standard Load LoRA remains incompatible. The node passes native-math and actual ComfyUI AR/patcher integration checks on CPU; full GPU audio workflows have not been validated.
+Install our [YuE2 Concept Slider custom node](comfyui/ntc_yue2_sliders/README.md), then connect it between the native YuE2 checkpoint's CLIP output and YuE2 Generate Music. Use the original files under `weights/particle-1200-v1/`; no conversion is needed. The [ZIP](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/comfyui/ntc_yue2_sliders.zip) includes the node and a complete workflow. Original particle files require this custom node. The distilled ordinary files instead use standard Load LoRA and the experimental release’s workflow. The node passes native-math and actual ComfyUI AR/patcher integration checks on CPU; full GPU audio workflows have not been validated.
 
 Use sound descriptions in captions and original lyric sheets. The released prompts and checkpoint metadata were checked for named music references.

@@ -5,5 +5,10 @@
     "conceptmod/textsliders/yue2_backend.py": "b3f9a9ac3756c48cc2a2555d7d844cc79feee50517f3174cf8e29ac4a3211704",
     "conceptmod/textsliders/particle_bridge_gan.py": "955584ae068012319c852b8df81af4b455f3ae0445f3faa7fb96ed429d4a88f1",
     "conceptmod/textsliders/yue2_particle_bridge.py": "81000335c5b3702d4218f011f639e5d9d672ccc8e0acff59e3d4294904c9ea1d"
+  },
+  "ordinary_lora_loader": {
+    "source": "conceptmod/textsliders/yue2_backend.py:YuE2Slider.load",
+    "source_sha256": "b3f9a9ac3756c48cc2a2555d7d844cc79feee50517f3174cf8e29ac4a3211704",
+    "packaging": "Keep native LoRA format literal; dispatch to the bundled ParticleSlider class."
   }
 }

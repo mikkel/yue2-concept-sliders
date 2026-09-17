@@ -198,6 +198,39 @@ class YuE2Slider(nn.Module):
             for adapter, value in zip(self.adapters.values(), previous):
                 adapter.multiplier = value
 
+    @classmethod
+    def load(cls, model, path):
+        with safe_open(str(path), framework='pt', device='cpu') as handle:
+            record = json.loads((handle.metadata() or {}).get('conceptmod', '{}'))
+        if record.get('format') == 'conceptmod-yue2-routed-particle-ar-v1':
+            return ParticleSlider.load(model, path)
+        if record.get('format') != 'conceptmod-yue2-ar-v1':
+            raise ValueError('Not a native YuE2 composition-slider checkpoint')
+        sound_only(json.dumps(record, ensure_ascii=False))
+        if record.get('dummy'):
+            raise ValueError('Dummy checkpoints cannot be used for song generation')
+        if record.get('architecture') != architecture(model):
+            raise ValueError('Slider architecture does not match this YuE2 model')
+        if record.get('targets') != list(attention_targets(model)):
+            raise ValueError('Slider target list does not match YuE2 AR attention')
+        state = load_file(str(path), device='cpu')
+        rank, alpha = (record['rank'], record['alpha'])
+        expected = {}
+        for name, module in attention_targets(model).items():
+            prefix = 'adapters.' + name.replace('.', '-')
+            expected[prefix + '.lora_down.weight'] = (rank, module.in_features)
+            expected[prefix + '.lora_up.weight'] = (module.out_features, rank)
+            expected[prefix + '.alpha'] = ()
+        if set(state) != set(expected) or any((tuple(state[k].shape) != shape for k, shape in expected.items())):
+            raise ValueError('Incomplete or incompatible YuE2 slider tensors')
+        if any((not torch.isfinite(t).all() for t in state.values())):
+            raise ValueError('Non-finite YuE2 slider weights')
+        if any((float(state[k]) != alpha for k in state if k.endswith('.alpha'))):
+            raise ValueError('Slider alpha metadata disagrees with its tensors')
+        network = cls(model, rank=rank, alpha=alpha)
+        network.load_state_dict(state, strict=True)
+        return (network, record)
+
 def mlp(inputs, outputs, width):
     layers = []
     for n in (inputs, width, width):

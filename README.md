@@ -4,7 +4,21 @@ Sixteen voice and genre controls for **YuE2-3B**, using our native routed-partic
 
 **[Try the Space](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders)** · **[Download weights and hear Off/On samples](https://huggingface.co/ntc-ai/yue2-concept-sliders)** · **[ComfyUI guide](comfyui/ntc_yue2_sliders/README.md)** · **[Native Python guide](USAGE.md)** · **[Training math](MATH.md)**
 
-This repository contains the inference loader, ComfyUI custom node and workflow, Space source, catalog and method documentation. Weights and recordings are hosted on Hugging Face. The release contains final EMA checkpoints at update **1,200**, with **64 matched Off/On listening pairs**.
+This repository contains the inference loader, ComfyUI custom node and workflow, Space source, catalog and method documentation. Original particle weights and recordings are hosted on Hugging Face; experimental ordinary LoRAs are available in GitHub Releases. The release contains final EMA checkpoints at update **1,200**, with **64 matched Off/On listening pairs**.
+
+## Experimental ordinary LoRAs
+
+All 16 controls also have **distilled rank-8 LoRA candidates** that use the
+standard ComfyUI **Load LoRA** node. They contain no particles or routers.
+Use MODEL strength **0** and CLIP strength **1**. Download the
+[experimental release](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917),
+which includes the standard-node workflow and matched listening comparisons.
+
+These approximate the particle teachers. Fidelity varies by control; the voice
+sliders are harder to match than most genre sliders. Read
+[DISTILLATION.md](DISTILLATION.md) for the regression and refinement math,
+held-out measurements, and the acoustic-prefix difference introduced by the
+standard ComfyUI loading scope. The Space continues to use the original particles.
 
 ## Controls
 
@@ -64,7 +78,7 @@ An ordinary LoRA branch computes `U(Vx)`. Its effective weight update is the fix
 
 Particles are an architectural choice in this experiment, not a requirement for YuE2 itself or for all concept sliders. This release does not include an ablation establishing that particles outperform ordinary LoRA. Their necessity here follows from how these particular weights were trained. Our [MiniMax Music 3 sliders](https://huggingface.co/ntc-ai/minimax-music3-concept-sliders) use a different adapter format and loading path.
 
-## Use in ComfyUI
+## Use original particles in ComfyUI
 
 Use an updated ComfyUI with its built-in YuE2 nodes. Install this repository directly as a custom node:
 

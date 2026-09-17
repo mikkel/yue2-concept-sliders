@@ -1,0 +1,584 @@
+{
+  "concept": "indie-rock",
+  "checkpoint": "indie-rock_distilled_refined_rank8.safetensors",
+  "checkpoint_sha256": "9024ee0676193245cafb29080c7c6106c0a658922e5e220e78670f3a967034a9",
+  "history": [
+    {
+      "step": 0,
+      "score": 0.025406610453501344,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.013899429701268673,
+          "steering_cosine": 0.9958984851837158,
+          "steering_norm_ratio": 0.9203131198883057
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05692538619041443,
+          "steering_cosine": 0.9731557369232178,
+          "steering_norm_ratio": 0.910248875617981
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.008024221286177635,
+          "steering_cosine": 0.99620121717453,
+          "steering_norm_ratio": 0.9751968383789062
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.022777404636144638,
+          "steering_cosine": 0.9888495802879333,
+          "steering_norm_ratio": 0.9643343687057495
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 0.028141522547230124,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.018546972423791885,
+          "steering_cosine": 0.9933997392654419,
+          "steering_norm_ratio": 0.9199846386909485
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05781729519367218,
+          "steering_cosine": 0.973329484462738,
+          "steering_norm_ratio": 0.9013053774833679
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.009745997376739979,
+          "steering_cosine": 0.9953813552856445,
+          "steering_norm_ratio": 0.9723600745201111
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.026455825194716454,
+          "steering_cosine": 0.9872047901153564,
+          "steering_norm_ratio": 0.9551251530647278
+        }
+      ],
+      "train_loss": 0.47989621758461
+    },
+    {
+      "step": 20,
+      "score": 0.023870208533480763,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.012551254592835903,
+          "steering_cosine": 0.995954155921936,
+          "steering_norm_ratio": 0.9290534853935242
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.055593762546777725,
+          "steering_cosine": 0.9735627770423889,
+          "steering_norm_ratio": 0.9150972366333008
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.005767066031694412,
+          "steering_cosine": 0.9971498847007751,
+          "steering_norm_ratio": 0.988493800163269
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.021568750962615013,
+          "steering_cosine": 0.9892597794532776,
+          "steering_norm_ratio": 0.9749929308891296
+        }
+      ],
+      "train_loss": 0.0598188154399395
+    },
+    {
+      "step": 30,
+      "score": 0.024706367636099458,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.016755487769842148,
+          "steering_cosine": 0.9948505163192749,
+          "steering_norm_ratio": 0.9143345355987549
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05063849687576294,
+          "steering_cosine": 0.9755334854125977,
+          "steering_norm_ratio": 0.9275302290916443
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.007655213586986065,
+          "steering_cosine": 0.9962041974067688,
+          "steering_norm_ratio": 0.9873782992362976
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.02377627231180668,
+          "steering_cosine": 0.9881082773208618,
+          "steering_norm_ratio": 0.9765238165855408
+        }
+      ],
+      "train_loss": 0.011160732246935368
+    },
+    {
+      "step": 40,
+      "score": 0.023830091347917914,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.012249255552887917,
+          "steering_cosine": 0.9956466555595398,
+          "steering_norm_ratio": 0.9359688758850098
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05154699459671974,
+          "steering_cosine": 0.9753586053848267,
+          "steering_norm_ratio": 0.9217744469642639
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.007432333193719387,
+          "steering_cosine": 0.9962800741195679,
+          "steering_norm_ratio": 0.99375981092453
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.024091782048344612,
+          "steering_cosine": 0.9879066944122314,
+          "steering_norm_ratio": 0.9807319641113281
+        }
+      ],
+      "train_loss": 0.0054657794535160065
+    },
+    {
+      "step": 50,
+      "score": 0.026615144219249487,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.021122843027114868,
+          "steering_cosine": 0.9920074939727783,
+          "steering_norm_ratio": 0.9198841452598572
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05149978771805763,
+          "steering_cosine": 0.975385844707489,
+          "steering_norm_ratio": 0.9217458963394165
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.010474657639861107,
+          "steering_cosine": 0.9951884746551514,
+          "steering_norm_ratio": 0.9656140804290771
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.02336328849196434,
+          "steering_cosine": 0.9882645606994629,
+          "steering_norm_ratio": 0.9827945828437805
+        }
+      ],
+      "train_loss": 0.012010827660560608
+    },
+    {
+      "step": 60,
+      "score": 0.02596350759267807,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.015899071469902992,
+          "steering_cosine": 0.9951765537261963,
+          "steering_norm_ratio": 0.9159595370292664
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05735967680811882,
+          "steering_cosine": 0.9727677702903748,
+          "steering_norm_ratio": 0.9124621748924255
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.007793363183736801,
+          "steering_cosine": 0.9962294697761536,
+          "steering_norm_ratio": 0.9799070954322815
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.022801918908953667,
+          "steering_cosine": 0.9887974858283997,
+          "steering_norm_ratio": 0.9659395217895508
+        }
+      ],
+      "train_loss": 0.04361879453063011
+    },
+    {
+      "step": 70,
+      "score": 0.025945827132090926,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.01778632402420044,
+          "steering_cosine": 0.9928311109542847,
+          "steering_norm_ratio": 0.9336710572242737
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05621551722288132,
+          "steering_cosine": 0.9732494950294495,
+          "steering_norm_ratio": 0.9146829843521118
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.006145930849015713,
+          "steering_cosine": 0.9971101880073547,
+          "steering_norm_ratio": 0.977756142616272
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.023635536432266235,
+          "steering_cosine": 0.9882913827896118,
+          "steering_norm_ratio": 0.9694361686706543
+        }
+      ],
+      "train_loss": 0.031801652163267136
+    },
+    {
+      "step": 80,
+      "score": 0.024188842275179923,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.01240435428917408,
+          "steering_cosine": 0.9961268901824951,
+          "steering_norm_ratio": 0.9277677536010742
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05409207567572594,
+          "steering_cosine": 0.9746115803718567,
+          "steering_norm_ratio": 0.9116854071617126
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.007456124294549227,
+          "steering_cosine": 0.9964374899864197,
+          "steering_norm_ratio": 0.9778985381126404
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.022802814841270447,
+          "steering_cosine": 0.9888419508934021,
+          "steering_norm_ratio": 0.964122474193573
+        }
+      ],
+      "train_loss": 0.006667172070592642
+    },
+    {
+      "step": 90,
+      "score": 0.023423615260981023,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.0126096922904253,
+          "steering_cosine": 0.9949263334274292,
+          "steering_norm_ratio": 0.9450460076332092
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05188503861427307,
+          "steering_cosine": 0.9748757481575012,
+          "steering_norm_ratio": 0.9272547364234924
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.007090828847140074,
+          "steering_cosine": 0.9964838027954102,
+          "steering_norm_ratio": 0.9880763292312622
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.022108901292085648,
+          "steering_cosine": 0.9889639616012573,
+          "steering_norm_ratio": 0.9763647317886353
+        }
+      ],
+      "train_loss": 0.05752570927143097
+    },
+    {
+      "step": 100,
+      "score": 0.02650818577967584,
+      "metrics": [
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "boundary",
+          "relative_steering_mse": 0.017303384840488434,
+          "steering_cosine": 0.9942164421081543,
+          "steering_norm_ratio": 0.9182584285736084
+        },
+        {
+          "sequence": "train-3",
+          "scale": 0.5,
+          "region": "music",
+          "relative_steering_mse": 0.05603518337011337,
+          "steering_cosine": 0.9737139940261841,
+          "steering_norm_ratio": 0.9092608094215393
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "boundary",
+          "relative_steering_mse": 0.008279441855847836,
+          "steering_cosine": 0.996080756187439,
+          "steering_norm_ratio": 0.9747220277786255
+        },
+        {
+          "sequence": "train-3",
+          "scale": 1.0,
+          "region": "music",
+          "relative_steering_mse": 0.024414733052253723,
+          "steering_cosine": 0.9880509376525879,
+          "steering_norm_ratio": 0.9623733758926392
+        }
+      ],
+      "train_loss": 0.007968013174831867
+    }
+  ],
+  "selected_step": 90,
+  "heldout": [
+    {
+      "sequence": "row0-off-seed1709",
+      "scale": 0.5,
+      "region": "boundary",
+      "relative_steering_mse": 0.021509945392608643,
+      "steering_cosine": 0.9892651438713074,
+      "steering_norm_ratio": 1.001740574836731
+    },
+    {
+      "sequence": "row0-off-seed1709",
+      "scale": 0.5,
+      "region": "music",
+      "relative_steering_mse": 0.08977953344583511,
+      "steering_cosine": 0.955839991569519,
+      "steering_norm_ratio": 1.0142323970794678,
+      "teacher_student_kl": 0.0003497886937111616,
+      "teacher_base_kl": 0.004368805326521397
+    },
+    {
+      "sequence": "row0-off-seed1709",
+      "scale": 1.0,
+      "region": "boundary",
+      "relative_steering_mse": 0.014621604233980179,
+      "steering_cosine": 0.9927606582641602,
+      "steering_norm_ratio": 1.0067334175109863
+    },
+    {
+      "sequence": "row0-off-seed1709",
+      "scale": 1.0,
+      "region": "music",
+      "relative_steering_mse": 0.03876126930117607,
+      "steering_cosine": 0.9804279804229736,
+      "steering_norm_ratio": 0.9809826016426086,
+      "teacher_student_kl": 0.0005902912234887481,
+      "teacher_base_kl": 0.024416085332632065
+    },
+    {
+      "sequence": "row0-metal-seed1709",
+      "scale": 0.5,
+      "region": "boundary",
+      "relative_steering_mse": 0.021509945392608643,
+      "steering_cosine": 0.9892651438713074,
+      "steering_norm_ratio": 1.001740574836731
+    },
+    {
+      "sequence": "row0-metal-seed1709",
+      "scale": 0.5,
+      "region": "music",
+      "relative_steering_mse": 0.051581863313913345,
+      "steering_cosine": 0.9742265939712524,
+      "steering_norm_ratio": 1.000675082206726,
+      "teacher_student_kl": 0.0003553760179784149,
+      "teacher_base_kl": 0.0071993423625826836
+    },
+    {
+      "sequence": "row0-metal-seed1709",
+      "scale": 1.0,
+      "region": "boundary",
+      "relative_steering_mse": 0.014621604233980179,
+      "steering_cosine": 0.9927606582641602,
+      "steering_norm_ratio": 1.0067334175109863
+    },
+    {
+      "sequence": "row0-metal-seed1709",
+      "scale": 1.0,
+      "region": "music",
+      "relative_steering_mse": 0.023148048669099808,
+      "steering_cosine": 0.9884270429611206,
+      "steering_norm_ratio": 0.9767630696296692,
+      "teacher_student_kl": 0.0004610165487974882,
+      "teacher_base_kl": 0.021175816655158997
+    },
+    {
+      "sequence": "row1-off-seed1709",
+      "scale": 0.5,
+      "region": "boundary",
+      "relative_steering_mse": 0.034471455961465836,
+      "steering_cosine": 0.9826294779777527,
+      "steering_norm_ratio": 0.9882919192314148
+    },
+    {
+      "sequence": "row1-off-seed1709",
+      "scale": 0.5,
+      "region": "music",
+      "relative_steering_mse": 0.08117618411779404,
+      "steering_cosine": 0.9593274593353271,
+      "steering_norm_ratio": 0.9978703856468201,
+      "teacher_student_kl": 0.0003875565598718822,
+      "teacher_base_kl": 0.004975206218659878
+    },
+    {
+      "sequence": "row1-off-seed1709",
+      "scale": 1.0,
+      "region": "boundary",
+      "relative_steering_mse": 0.011078055016696453,
+      "steering_cosine": 0.9948341250419617,
+      "steering_norm_ratio": 1.0226366519927979
+    },
+    {
+      "sequence": "row1-off-seed1709",
+      "scale": 1.0,
+      "region": "music",
+      "relative_steering_mse": 0.03076324425637722,
+      "steering_cosine": 0.9848520159721375,
+      "steering_norm_ratio": 1.0112470388412476,
+      "teacher_student_kl": 0.0006805604789406061,
+      "teacher_base_kl": 0.01801062747836113
+    },
+    {
+      "sequence": "row1-metal-seed1709",
+      "scale": 0.5,
+      "region": "boundary",
+      "relative_steering_mse": 0.034471455961465836,
+      "steering_cosine": 0.9826294779777527,
+      "steering_norm_ratio": 0.9882919192314148
+    },
+    {
+      "sequence": "row1-metal-seed1709",
+      "scale": 0.5,
+      "region": "music",
+      "relative_steering_mse": 0.04150973632931709,
+      "steering_cosine": 0.9791828989982605,
+      "steering_norm_ratio": 0.996760904788971,
+      "teacher_student_kl": 0.0002575045800767839,
+      "teacher_base_kl": 0.007624126970767975
+    },
+    {
+      "sequence": "row1-metal-seed1709",
+      "scale": 1.0,
+      "region": "boundary",
+      "relative_steering_mse": 0.011078055016696453,
+      "steering_cosine": 0.9948341250419617,
+      "steering_norm_ratio": 1.0226366519927979
+    },
+    {
+      "sequence": "row1-metal-seed1709",
+      "scale": 1.0,
+      "region": "music",
+      "relative_steering_mse": 0.02247738651931286,
+      "steering_cosine": 0.9888345003128052,
+      "steering_norm_ratio": 1.0052920579910278,
+      "teacher_student_kl": 0.00037077063461765647,
+      "teacher_base_kl": 0.021790115162730217
+    }
+  ],
+  "zero_exact": true,
+  "ordinary_lora_only": true
+}
