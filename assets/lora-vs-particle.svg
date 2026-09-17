@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1480" viewBox="0 0 640 1480" role="img" aria-labelledby="title description">
+  <title id="title">Ordinary LoRA and the YuE2 particle adapter</title>
+  <desc id="description">Both add a strength-scaled correction to the same frozen projection. An ordinary LoRA applies down matrix A and up matrix B, so its correction is BAx, a fixed linear weight update. Our particle adapter applies down matrix V, routes the resulting features a through a query network, softmax-weights a shared cloud of 128 learned four-dimensional vectors, and sends the original features together with the weighted mixture z through a nonlinear MLP and up matrix U. The cloud is fixed after training, but its mixing weights depend on the input. Distillation fits two ordinary matrices to approximate this entire nonlinear correction.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2563a8"/></marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7950b4"/></marker>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #18273a; }
+      .heading { font-size: 30px; font-weight: 700; }
+      .label { font-size: 25px; font-weight: 700; }
+      .body { font-size: 23px; }
+      .note { font-size: 21px; fill: #45566b; }
+      .math { font-family: Georgia, 'Times New Roman', serif; font-size: 28px; }
+      .blue { fill: #174f89; }
+      .purple { fill: #6835a2; }
+      .line-blue { fill: none; stroke: #2563a8; stroke-width: 3; marker-end: url(#arrow-blue); }
+      .line-purple { fill: none; stroke: #7950b4; stroke-width: 3; marker-end: url(#arrow-purple); }
+    </style>
+  </defs>
+  <rect width="640" height="1480" rx="20" fill="#ffffff"/>
+  <text x="32" y="44" class="heading">Two ways to change a projection</text>
+  <text x="32" y="79" class="body">Inside YuE2’s autoregressive attention</text>
+
+  <rect x="24" y="105" width="592" height="112" rx="16" fill="#f1f5f9" stroke="#ced8e3"/>
+  <text x="48" y="145" class="math">Both: output = W₀x + s · Δ(x)</text>
+  <text x="48" y="182" class="note">W₀ frozen · s = slider strength · α/r = 1 here</text>
+
+  <rect x="24" y="245" width="592" height="292" rx="18" fill="#f0f7ff" stroke="#b9d3ee"/>
+  <text x="48" y="289" class="heading blue">1  Ordinary LoRA</text>
+  <text x="48" y="324" class="body">Two learned matrices</text>
+  <text x="47" y="390" class="math">x</text>
+  <path d="M 68 381 H 100" class="line-blue"/>
+  <rect x="104" y="344" width="168" height="76" rx="12" fill="#ffffff" stroke="#78a7d4" stroke-width="2"/>
+  <text x="188" y="377" text-anchor="middle" class="label blue">Down A</text>
+  <text x="188" y="405" text-anchor="middle" class="note">8 features</text>
+  <path d="M 274 381 H 344" class="line-blue"/>
+  <rect x="348" y="344" width="168" height="76" rx="12" fill="#ffffff" stroke="#78a7d4" stroke-width="2"/>
+  <text x="432" y="377" text-anchor="middle" class="label blue">Up B</text>
+  <text x="432" y="405" text-anchor="middle" class="note">correction</text>
+  <path d="M 518 381 H 559" class="line-blue"/>
+  <text x="568" y="390" class="math blue">Δ</text>
+  <text x="48" y="465" class="math blue">Δ(x) = BAx = ΔW x</text>
+  <text x="48" y="506" class="body">ΔW = BA is fixed after training.</text>
+
+  <rect x="24" y="561" width="592" height="750" rx="18" fill="#f8f3ff" stroke="#d5c3ec"/>
+  <text x="48" y="606" class="heading purple">2  Our particle LoRA</text>
+  <text x="48" y="641" class="body">A routed, nonlinear correction</text>
+
+  <text x="47" y="702" class="math">x</text>
+  <path d="M 68 693 H 100" class="line-purple"/>
+  <rect x="104" y="657" width="224" height="72" rx="12" fill="#ffffff" stroke="#b297d7" stroke-width="2"/>
+  <text x="216" y="688" text-anchor="middle" class="label purple">Down V</text>
+  <text x="216" y="715" text-anchor="middle" class="note">a = Vx · 8 features</text>
+  <path d="M 216 730 V 769" class="line-purple"/>
+  <circle cx="216" cy="747" r="4" fill="#7950b4"/>
+  <path d="M 212 747 H 70 V 1106 H 100" class="line-purple"/>
+  <rect x="46" y="976" width="48" height="43" rx="8" fill="#f8f3ff"/>
+  <text x="70" y="1008" text-anchor="middle" class="math purple">a</text>
+
+  <rect x="104" y="773" width="224" height="82" rx="12" fill="#ffffff" stroke="#b297d7" stroke-width="2"/>
+  <text x="216" y="809" text-anchor="middle" class="label purple">Router ρ(a)</text>
+  <text x="216" y="838" text-anchor="middle" class="note">query q · 4 numbers</text>
+  <path d="M 216 857 V 916" class="line-purple"/>
+  <text x="237" y="895" class="math purple">q</text>
+
+  <rect x="377" y="752" width="208" height="155" rx="14" fill="#eee1ff" stroke="#a884cc" stroke-width="2"/>
+  <text x="481" y="785" text-anchor="middle" class="label purple">Cloud P</text>
+  <g fill="#7950b4">
+    <circle cx="412" cy="813" r="5"/><circle cx="439" cy="826" r="5"/><circle cx="469" cy="807" r="5"/>
+    <circle cx="495" cy="824" r="5"/><circle cx="524" cy="810" r="5"/><circle cx="551" cy="823" r="5"/>
+  </g>
+  <text x="481" y="855" text-anchor="middle" class="note">128 learned vectors</text>
+  <text x="481" y="884" text-anchor="middle" class="note">4 numbers each</text>
+  <path d="M 481 909 V 964 H 332" class="line-purple"/>
+  <text x="436" y="946" class="math purple">P</text>
+
+  <rect x="104" y="920" width="224" height="89" rx="12" fill="#eee1ff" stroke="#a884cc" stroke-width="2"/>
+  <text x="216" y="954" text-anchor="middle" class="label purple">Softmax + mix</text>
+  <text x="216" y="986" text-anchor="middle" class="note">128 weights → z</text>
+  <path d="M 216 1011 V 1061" class="line-purple"/>
+  <text x="237" y="1045" class="math purple">z</text>
+
+  <rect x="104" y="1065" width="224" height="82" rx="12" fill="#eee1ff" stroke="#a884cc" stroke-width="2"/>
+  <text x="216" y="1100" text-anchor="middle" class="label purple">MLP φ([a, z])</text>
+  <text x="216" y="1129" text-anchor="middle" class="note">nonlinear · 8 outputs</text>
+  <path d="M 330 1106 H 374" class="line-purple"/>
+  <rect x="378" y="1070" width="145" height="72" rx="12" fill="#ffffff" stroke="#b297d7" stroke-width="2"/>
+  <text x="450" y="1116" text-anchor="middle" class="label purple">Up U</text>
+  <path d="M 525 1106 H 559" class="line-purple"/>
+  <text x="568" y="1116" class="math purple">Δ</text>
+
+  <text x="48" y="1200" class="math purple">Δ(x) = U φ([Vx, z(x)])</text>
+  <text x="48" y="1244" class="body">The mixing weights depend on x.</text>
+  <text x="48" y="1278" class="note">P stays learned and fixed during inference.</text>
+
+  <rect x="24" y="1335" width="592" height="121" rx="16" fill="#f1f5f9" stroke="#ced8e3"/>
+  <text x="48" y="1375" class="label">What distillation does</text>
+  <text x="48" y="1410" class="body">Fits A and B to approximate the whole</text>
+  <text x="48" y="1440" class="body">particle correction, then removes its routing.</text>
+</svg>
