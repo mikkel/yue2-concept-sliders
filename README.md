@@ -21,7 +21,7 @@ A particle is a small learned vector. Each slider has **128 vectors of four numb
 Every attention projection has a small router. At each input, that router asks the shared cloud for a different weighted mixture of its vectors. A second small network combines that mixture with the current features to produce the correction to the frozen base projection.
 
 ```mermaid
-flowchart LR
+flowchart TB
     X[Current input x] --> Base[Frozen projection]
     X --> Down[Rank-8 down projection]
     Down --> Router[Projection-specific router]
@@ -45,7 +45,7 @@ Using column vectors, let `x` be a projection input, `V` its down projection, `U
 $$
 \begin{aligned}
 a &= Vx, & q &= \rho(a), \\
-w &= \operatorname{softmax}(Pq/\sqrt{4}), & z &= P^\top w, \\
+w &= \mathrm{softmax}(Pq/\sqrt{4}), & z &= P^\top w, \\
 f_s(x) &= f_0(x) + s\,\frac{\alpha}{r}\,U\phi([a,z]).
 \end{aligned}
 $$

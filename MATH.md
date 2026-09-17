@@ -9,7 +9,7 @@ Each autoregressive attention projection gets a nonlinear residual branch. For a
 $$
 \begin{aligned}
 a &= Vx, & q &= \rho(a), \\
-w &= \operatorname{softmax}\!\left(\frac{Pq}{\sqrt{d_p}}\right),
+w &= \mathrm{softmax}\!\left(\frac{Pq}{\sqrt{d_p}}\right),
 & z &= P^\top w, \\
 f_s(x) &= f_0(x) + s\,\frac{\alpha}{r}\,U\phi([a,z]).
 \end{aligned}
@@ -25,7 +25,7 @@ Let `hᵢ⁺` be the frozen model's final prompt state for training row `i` unde
 
 $$
 \begin{aligned}
-T(h) &= \frac{h-\mu_+}{\max(\operatorname{std}_{\mathrm{sample}}(h^+),10^{-4})}, \\
+T(h) &= \frac{h-\mu_+}{\max(\mathrm{std}_{\mathrm{sample}}(h^+),10^{-4})}, \\
 e_i &= T(h_i^\theta)-T(h_i^+).
 \end{aligned}
 $$
@@ -50,10 +50,10 @@ The critic `D` is a scalar MLP with three width-48 hidden layers. Its relativist
 $$
 \begin{aligned}
 \mathcal L_D &= \mathbb E\!\left[
-\operatorname{softplus}\big(D(x_{\mathrm{fake}})-D(x_{\mathrm{real}})\big)
+\mathrm{softplus}\big(D(x_{\mathrm{fake}})-D(x_{\mathrm{real}})\big)
 \right] + \mathcal R_{\mathrm{cap}}, \\
 \mathcal L_G &= \mathbb E\!\left[
-\operatorname{softplus}\big(D(x_{\mathrm{real}})-D(x_{\mathrm{fake}})\big)
+\mathrm{softplus}\big(D(x_{\mathrm{real}})-D(x_{\mathrm{fake}})\big)
 \right] + \mathcal V(P_S).
 \end{aligned}
 $$
