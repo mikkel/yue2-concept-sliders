@@ -8,6 +8,8 @@ do not replace the Space defaults.
 
 ## What is being removed
 
+The particle teachers were introduced as part of a GAN-stabilization recipe. See [the historical generator-training curves](GAN_STABILITY.md) for the observed spike, the particle run and the slower plain-LoRA control.
+
 ### Ordinary LoRA versus our particle adapter
 
 ![Ordinary LoRA uses two matrices for a fixed linear correction. The particle adapter adds input-dependent routing through a shared learned cloud and a nonlinear MLP before its up projection. Both add their correction to the same frozen base projection.](assets/lora-vs-particle.svg)

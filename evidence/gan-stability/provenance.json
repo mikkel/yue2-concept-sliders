@@ -1,0 +1,355 @@
+{
+  "description": "Historical native YuE2 training comparison; not a particle-only ablation",
+  "common": {
+    "model": {
+      "files": {
+        "model.safetensors": {
+          "sha256": "1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9",
+          "bytes": 7261441640
+        }
+      },
+      "config_sha256": "ad3477bbef890bf98ae196c1e4b44779494a6231c4ab66f32708eabadf265329"
+    },
+    "seed": 7,
+    "prompts_sha256": "c21616180f65d38aa64e46243b021a520b33e394a2ab9afdf0ff3b52ff8d8b22",
+    "rank": 8,
+    "alpha": 8.0,
+    "model_id": "m-a-p/YuE2-3B"
+  },
+  "metrics": {
+    "g_adv": "Logged generator adversarial term; excludes particle VIC",
+    "cos_pos": "Logged cosine to the positive-caption hidden target, not an audio metric",
+    "grad_norm": "Logged generator parameter gradient norm; different architectures have different parameters"
+  },
+  "smoothing": "none",
+  "downsampling": "none",
+  "missing_updates": 0,
+  "csv_sha256": "5824894f15155134173e0616426102751ed2df75b5008e0e6ee4d6598ebbefa9",
+  "particle_checkpoint_sha256": "9cebb1913b9e94276cb641b843db489be92894f2bd5b6c76ad7235120082e7d5",
+  "particle_checkpoint_is_released_metal": true,
+  "generator_script_sha256": "d8508706deed2d08aec32084bdb89dfb0955b74842b1e7c211a141810da968e7",
+  "runs": [
+    {
+      "id": "plain-original",
+      "run": "metal-yue2-uni-control-600-s7-20260916",
+      "label": "Without particles \u00b7 original rates",
+      "updates": 600,
+      "seed": 7,
+      "recipe": {
+        "lm_target": "faithful_plus_neu",
+        "adv_arch": "mlp",
+        "adv_norm": "l2",
+        "fm_weight": 0.0,
+        "parts": 0,
+        "pole_weight": 0.0,
+        "cover_weight": 0.0,
+        "adv_reg_kappa": 1.0,
+        "adv_b_cap": 1.0,
+        "vicreg_weight": 0.0,
+        "name": "unipolar-rpgan-bcap-yue2-v3",
+        "polarity": "unipolar",
+        "adv_weight": 1.0,
+        "end_weight": 0.0,
+        "lyrichold_weight": 0.0,
+        "plan_weight": 0.0,
+        "anchor_weight": 0.0,
+        "critic_hidden": 256,
+        "critic_layers": 2,
+        "adv_in": "scaled",
+        "adv_batch": 4,
+        "g_lr": 0.0005,
+        "d_lr": 0.00075,
+        "betas": [
+          0.0,
+          0.999
+        ],
+        "g_weight_decay": 1e-06,
+        "schedule": "constant",
+        "grad_clip_value": 1.0,
+        "trained_scales": [
+          1.0
+        ],
+        "zero_behavior": "exact_base_by_adapter_scale",
+        "recommended_range": [
+          0.0,
+          1.0
+        ],
+        "penalty_method": "autograd",
+        "penalty_lazy_k": 1,
+        "penalty_anneal": "none",
+        "cap_coordinates": "fixed_teacher_rms",
+        "generator_objective": "positive_rpgan_only",
+        "critic_positions": "music_start_only",
+        "phase_changes": [],
+        "prompt_policy": "balanced_shuffled_passes",
+        "history_policy": "none_prompt_states_only"
+      },
+      "model": {
+        "files": {
+          "model.safetensors": {
+            "sha256": "1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9",
+            "bytes": 7261441640
+          }
+        },
+        "config_sha256": "ad3477bbef890bf98ae196c1e4b44779494a6231c4ab66f32708eabadf265329"
+      },
+      "prompts_sha256": "c21616180f65d38aa64e46243b021a520b33e394a2ab9afdf0ff3b52ff8d8b22",
+      "manifest_sha256": "fe3dd50c4dd678db08b607db9f6bf737f7310dd13490fdbfaed3469091d1de90",
+      "source_files": {
+        "conceptmod/textsliders/train_lora_yue2_arm_b.py": "6fe065be4ffa4c46092229db93a48ff2dd29bc4c5960a2f74056d0a3a2376f52",
+        "conceptmod/textsliders/yue2_arm_b.py": "23a77228e80cbe7bff4b9fbaa352cebd2c481f8b898d38b2f34e96bdf85c2410",
+        "conceptmod/textsliders/train_lora_yue2_fresh.py": "6dab075cd2e0be8458ffe1a58ce73c9e3950d030a49f7f4dd84a7a12b9191fa2",
+        "conceptmod/textsliders/yue2_uni.py": "1e53d559804ad6ff6e6ae52bbcae74db8b8110315b050d4ade25700bbd531b2b",
+        "conceptmod/textsliders/yue2_backend.py": "02172125b29897d94f0f21bf4a0adc121be3907ada1e8d947223072d4ffb5695",
+        "conceptmod/textsliders/lora.py": "2bcf1a1267ca0369e0e2d4e2584db6821b2ab518c9cd3c535292d20a5e25d85d",
+        "conceptmod/textsliders/lm_adv.py": "8b42a4bad78e2a5314289ef23598908a5d967281aab91c88841ef344a9d33a68",
+        "conceptmod/textsliders/slider_targets.py": "5db3a2cdc9635a0f15f6bc59c80f00700ef04d35241650b935b373f610a85412",
+        "conceptmod/textsliders/train_lm_slider_music3.py": "63bfae58cd22cd35ace03c3f83227d1c8a55c1ad4fb40205ae087d4f5aab6ead",
+        "conceptmod/textsliders/unipolar_gan.py": "70cf554c1a7650735f11b042d3a55dd072980a0110bf5bd94bfe22571fb88f61",
+        "conceptmod/textsliders/yue2_gan_plus_neu.py": "6bfa92f5242b43e62317d6b1d518b7e2a0fda45eba39fad2077b039598a1578e",
+        "analysis/slider2d/adv.py": "1a939c65626574028a90f7a96c95b6363d59f4199833d74950ba625b3f9491fb",
+        "analysis/slider2d/grad_regularizers.py": "c1372f537c8f53b6d3fdedc3dc9521533d3b5f954c8d1e012af02d5c87f864e5"
+      },
+      "log_files": [
+        {
+          "name": "updates-from-0-1789604185394707188.jsonl",
+          "sha256": "4bab437a54d304f63ab4483835b0b411f27e3acbcefbeaf1fd87f2c3002c4157",
+          "bytes": 580
+        },
+        {
+          "name": "updates-from-2-1789604357823659345.jsonl",
+          "sha256": "7907b93803772101d3551740b66cecaa1bccbd05cabf1d0d05b09aac2c3a608e",
+          "bytes": 178217
+        }
+      ],
+      "peak_g_adv": 549.7572174072266,
+      "peak_g_step": 373,
+      "final_g_adv": 4.302892029285431,
+      "final_cos_pos": 0.8786382377147675
+    },
+    {
+      "id": "plain-slower",
+      "run": "metal-yue2-uni-native-lr-600-s7-20260916",
+      "label": "Without particles \u00b7 rates \u00f7 5",
+      "updates": 600,
+      "seed": 7,
+      "recipe": {
+        "lm_target": "faithful_plus_neu",
+        "adv_arch": "mlp",
+        "adv_norm": "l2",
+        "fm_weight": 0.0,
+        "parts": 0,
+        "pole_weight": 0.0,
+        "cover_weight": 0.0,
+        "adv_reg_kappa": 1.0,
+        "adv_b_cap": 1.0,
+        "vicreg_weight": 0.0,
+        "name": "unipolar-rpgan-bcap-yue2-v3",
+        "polarity": "unipolar",
+        "adv_weight": 1.0,
+        "end_weight": 0.0,
+        "lyrichold_weight": 0.0,
+        "plan_weight": 0.0,
+        "anchor_weight": 0.0,
+        "critic_hidden": 256,
+        "critic_layers": 2,
+        "adv_in": "scaled",
+        "adv_batch": 4,
+        "g_lr": 0.0001,
+        "d_lr": 0.00015000000000000001,
+        "betas": [
+          0.0,
+          0.999
+        ],
+        "g_weight_decay": 1e-06,
+        "schedule": "constant",
+        "grad_clip_value": 1.0,
+        "trained_scales": [
+          1.0
+        ],
+        "zero_behavior": "exact_base_by_adapter_scale",
+        "recommended_range": [
+          0.0,
+          1.0
+        ],
+        "penalty_method": "autograd",
+        "penalty_lazy_k": 1,
+        "penalty_anneal": "none",
+        "cap_coordinates": "fixed_teacher_rms",
+        "generator_objective": "positive_rpgan_only",
+        "critic_positions": "music_start_only",
+        "phase_changes": [],
+        "prompt_policy": "balanced_shuffled_passes",
+        "history_policy": "none_prompt_states_only",
+        "ablation": "native_lr_scale",
+        "lr_scale": 0.2,
+        "propose_only": true,
+        "merge_to_trainer": false
+      },
+      "model": {
+        "files": {
+          "model.safetensors": {
+            "sha256": "1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9",
+            "bytes": 7261441640
+          }
+        },
+        "config_sha256": "ad3477bbef890bf98ae196c1e4b44779494a6231c4ab66f32708eabadf265329"
+      },
+      "prompts_sha256": "c21616180f65d38aa64e46243b021a520b33e394a2ab9afdf0ff3b52ff8d8b22",
+      "manifest_sha256": "b3d8f78dca57d190fe52b68f5bb542c215541c56fe48714416c053d673386365",
+      "source_files": {
+        "conceptmod/textsliders/train_lora_yue2_arm_b.py": "a67adb98175450fc0d67789f9e76ae83b83f7df57cf240d97f393149faa43507",
+        "conceptmod/textsliders/yue2_arm_b.py": "23a77228e80cbe7bff4b9fbaa352cebd2c481f8b898d38b2f34e96bdf85c2410",
+        "conceptmod/textsliders/train_lora_yue2_fresh.py": "6dab075cd2e0be8458ffe1a58ce73c9e3950d030a49f7f4dd84a7a12b9191fa2",
+        "conceptmod/textsliders/yue2_uni.py": "1e53d559804ad6ff6e6ae52bbcae74db8b8110315b050d4ade25700bbd531b2b",
+        "conceptmod/textsliders/yue2_backend.py": "02172125b29897d94f0f21bf4a0adc121be3907ada1e8d947223072d4ffb5695",
+        "conceptmod/textsliders/lora.py": "2bcf1a1267ca0369e0e2d4e2584db6821b2ab518c9cd3c535292d20a5e25d85d",
+        "conceptmod/textsliders/lm_adv.py": "8b42a4bad78e2a5314289ef23598908a5d967281aab91c88841ef344a9d33a68",
+        "conceptmod/textsliders/slider_targets.py": "5db3a2cdc9635a0f15f6bc59c80f00700ef04d35241650b935b373f610a85412",
+        "conceptmod/textsliders/train_lm_slider_music3.py": "63bfae58cd22cd35ace03c3f83227d1c8a55c1ad4fb40205ae087d4f5aab6ead",
+        "conceptmod/textsliders/unipolar_gan.py": "70cf554c1a7650735f11b042d3a55dd072980a0110bf5bd94bfe22571fb88f61",
+        "conceptmod/textsliders/yue2_gan_plus_neu.py": "6bfa92f5242b43e62317d6b1d518b7e2a0fda45eba39fad2077b039598a1578e",
+        "analysis/slider2d/adv.py": "1a939c65626574028a90f7a96c95b6363d59f4199833d74950ba625b3f9491fb",
+        "analysis/slider2d/grad_regularizers.py": "c1372f537c8f53b6d3fdedc3dc9521533d3b5f954c8d1e012af02d5c87f864e5"
+      },
+      "log_files": [
+        {
+          "name": "updates-from-0-1789615688269891650.jsonl",
+          "sha256": "042f098fb07c509cb2e75998cd7e0a83592b02f2759f2425e1b5de99334bace3",
+          "bytes": 184337
+        }
+      ],
+      "peak_g_adv": 3.9029213786125183,
+      "peak_g_step": 5,
+      "final_g_adv": 0.746795654296875,
+      "final_cos_pos": 0.9886128008365631
+    },
+    {
+      "id": "particle",
+      "run": "metal-yue2-particle-bridge-s7-20260917",
+      "label": "With particles \u00b7 new recipe",
+      "updates": 1200,
+      "seed": 7,
+      "recipe": {
+        "lm_target": "faithful_plus_neu",
+        "adv_arch": "mlp",
+        "adv_norm": "l2",
+        "fm_weight": 0.0,
+        "parts": 128,
+        "pole_weight": 0.0,
+        "cover_weight": 0.0,
+        "adv_reg_kappa": 1.0,
+        "adv_b_cap": 1.0,
+        "vicreg_weight": 1.0,
+        "name": "anneal-routed-particle-error-yue2-v1",
+        "polarity": "unipolar",
+        "adv_weight": 1.0,
+        "end_weight": 0.0,
+        "lyrichold_weight": 0.0,
+        "plan_weight": 0.0,
+        "anchor_weight": 0.0,
+        "critic_hidden": 48,
+        "critic_layers": 3,
+        "adv_in": "scaled",
+        "adv_batch": 64,
+        "g_lr": 0.0006,
+        "d_lr": 0.0009,
+        "betas": [
+          0.0,
+          0.999
+        ],
+        "g_weight_decay": 0.0,
+        "schedule": "constant",
+        "grad_clip_value": null,
+        "trained_scales": [
+          1.0
+        ],
+        "zero_behavior": "exact_base_by_adapter_scale",
+        "recommended_range": [
+          0.0,
+          1.0
+        ],
+        "penalty_method": "autograd",
+        "penalty_lazy_k": 4,
+        "penalty_anneal": "none",
+        "cap_coordinates": "normalized_paired_error_plus_shared_gaussian",
+        "generator_objective": "paired_error_rpgan_plus_particle_vic",
+        "critic_positions": "music_start_only",
+        "phase_changes": [],
+        "prompt_policy": "independent_D_G_with_replacement",
+        "history_policy": "none_prompt_states_only",
+        "particle_dim": 4,
+        "particle_lr": 0.006,
+        "g_optimizer": "Adam",
+        "target_normalization": "training_target_per_coordinate_sample_std_floor_1e-4",
+        "noise_start": 1.0,
+        "noise_floor": 0.03,
+        "noise_decay_steps": 8000,
+        "ema": 0.995,
+        "routing": "all_examples",
+        "particle_vic_batch": 64,
+        "particle_vic_target_std": 1.0,
+        "particle_vic_eps": 0.0001,
+        "adapter_format": "conceptmod-yue2-routed-particle-ar-v1",
+        "adapter_rank": 8,
+        "adapter_width": 48,
+        "router_width": 16,
+        "generator_initialization": "zero_output_low_rank; standard_normal_particles",
+        "critic_seed_offset": 1000,
+        "model_glue_reference": "df70ccb2ca8f532bdcc07a343fd12bec77362523",
+        "config_sha256": "1ef39a623505691b8710cd37cb768452cd79f6666d109614af297e9d270d88bb",
+        "propose_only": true,
+        "merge_to_trainer": false
+      },
+      "model": {
+        "files": {
+          "model.safetensors": {
+            "sha256": "1d55c42c1a9875c34f5d736e15078449992b044e807ce2a138e6cf289a1e59e9",
+            "bytes": 7261441640
+          }
+        },
+        "config_sha256": "ad3477bbef890bf98ae196c1e4b44779494a6231c4ab66f32708eabadf265329"
+      },
+      "prompts_sha256": "c21616180f65d38aa64e46243b021a520b33e394a2ab9afdf0ff3b52ff8d8b22",
+      "manifest_sha256": "5c77e35c2c08e9a423091024a6eba6002dd6b3369aa352f3707711519520b5a7",
+      "source_files": {
+        "conceptmod/textsliders/train_lora_yue2_arm_b.py": "11a212e2800ae0ff6b408acde5c94cd029bbcf861060c918ec040b834d4768ae",
+        "conceptmod/textsliders/yue2_arm_b.py": "23a77228e80cbe7bff4b9fbaa352cebd2c481f8b898d38b2f34e96bdf85c2410",
+        "conceptmod/textsliders/train_lora_yue2_fresh.py": "6dab075cd2e0be8458ffe1a58ce73c9e3950d030a49f7f4dd84a7a12b9191fa2",
+        "conceptmod/textsliders/yue2_uni.py": "1e53d559804ad6ff6e6ae52bbcae74db8b8110315b050d4ade25700bbd531b2b",
+        "conceptmod/textsliders/yue2_backend.py": "b3f9a9ac3756c48cc2a2555d7d844cc79feee50517f3174cf8e29ac4a3211704",
+        "conceptmod/textsliders/lora.py": "2bcf1a1267ca0369e0e2d4e2584db6821b2ab518c9cd3c535292d20a5e25d85d",
+        "conceptmod/textsliders/lm_adv.py": "8b42a4bad78e2a5314289ef23598908a5d967281aab91c88841ef344a9d33a68",
+        "conceptmod/textsliders/slider_targets.py": "5db3a2cdc9635a0f15f6bc59c80f00700ef04d35241650b935b373f610a85412",
+        "conceptmod/textsliders/train_lm_slider_music3.py": "63bfae58cd22cd35ace03c3f83227d1c8a55c1ad4fb40205ae087d4f5aab6ead",
+        "conceptmod/textsliders/unipolar_gan.py": "70cf554c1a7650735f11b042d3a55dd072980a0110bf5bd94bfe22571fb88f61",
+        "conceptmod/textsliders/yue2_gan_plus_neu.py": "6bfa92f5242b43e62317d6b1d518b7e2a0fda45eba39fad2077b039598a1578e",
+        "conceptmod/textsliders/particle_bridge_gan.py": "955584ae068012319c852b8df81af4b455f3ae0445f3faa7fb96ed429d4a88f1",
+        "conceptmod/textsliders/yue2_particle_bridge.py": "81000335c5b3702d4218f011f639e5d9d672ccc8e0acff59e3d4294904c9ea1d",
+        "analysis/slider2d/adv.py": "1a939c65626574028a90f7a96c95b6363d59f4199833d74950ba625b3f9491fb",
+        "analysis/slider2d/grad_regularizers.py": "c1372f537c8f53b6d3fdedc3dc9521533d3b5f954c8d1e012af02d5c87f864e5"
+      },
+      "log_files": [
+        {
+          "name": "updates-from-0-1789621198597568964.jsonl",
+          "sha256": "f7899d0aa710d92a2a4ea8fdb1e4f5d001590fcfe082527d52da2b77dca1258c",
+          "bytes": 18156
+        },
+        {
+          "name": "updates-from-20-1789621496201547800.jsonl",
+          "sha256": "d44fb6acfae309555fd23fe9eb0f2011974819b7595db261908ca9bb1bb87908",
+          "bytes": 531263
+        },
+        {
+          "name": "updates-from-600-1789624036758772941.jsonl",
+          "sha256": "81fa2341d9b3e0f89cd9ad75345686887afee90834cd4725901ddcb8b9ed4db4",
+          "bytes": 550642
+        }
+      ],
+      "peak_g_adv": 35.65511894226074,
+      "peak_g_step": 945,
+      "final_g_adv": 3.2704476416110992,
+      "final_cos_pos": 0.9984852885827422
+    }
+  ]
+}
