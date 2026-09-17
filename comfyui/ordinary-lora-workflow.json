@@ -65,10 +65,7 @@
       },
       "widgets_values": [
         "yue2_3b_bf16.safetensors"
-      ],
-      "widgets_values_named": {
-        "ckpt_name": "yue2_3b_int8_convrot.safetensors"
-      }
+      ]
     },
     {
       "id": 41,
@@ -233,20 +230,7 @@
         100,
         1.2,
         1.01
-      ],
-      "widgets_values_named": {
-        "style": "",
-        "lyrics": "",
-        "abc": "",
-        "seed": 530976807293994,
-        "control_after_generate": "randomize",
-        "mode": "full",
-        "max_duration": 360,
-        "temperature": 1,
-        "top_p": 0.95,
-        "top_k": 100,
-        "repetition_penalty": 1.2
-      }
+      ]
     },
     {
       "id": 18,
@@ -326,10 +310,6 @@
         120,
         1
       ],
-      "widgets_values_named": {
-        "seconds": 120,
-        "batch_size": 1
-      },
       "color": "#323",
       "bgcolor": "#535"
     },
@@ -403,16 +383,7 @@
         "dpm_2",
         "sgm_uniform",
         1
-      ],
-      "widgets_values_named": {
-        "seed": 42,
-        "control_after_generate": "fixed",
-        "steps": 32,
-        "cfg": 1,
-        "sampler_name": "dpm_2",
-        "scheduler": "sgm_uniform",
-        "denoise": 1
-      }
+      ]
     },
     {
       "id": 9,
@@ -490,11 +461,7 @@
       "widgets_values": [
         "audio/yue2-ordinary-lora",
         "flac"
-      ],
-      "widgets_values_named": {
-        "filename_prefix": "audio/YuE2",
-        "format": "flac"
-      }
+      ]
     }
   ],
   "links": [

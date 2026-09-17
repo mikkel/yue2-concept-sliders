@@ -4,7 +4,7 @@ All 16 released particle sliders were distilled into ordinary rank-8 LoRAs.
 These experimental candidates preserve the original particle checkpoints and
 do not replace the Space defaults.
 
-[Experimental downloads](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917). The comparison archive includes an HTML listening page, large audio controls, and all recordings.
+[Hugging Face downloads and listening comparisons](https://huggingface.co/ntc-ai/yue2-concept-sliders#choose-your-adapter) · [GitHub archive mirror](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917). Hugging Face includes native and ComfyUI weights, the standard-node workflow and all 128 recordings. The comparison archive includes a portable HTML listening page.
 
 ## What is being removed
 

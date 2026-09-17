@@ -4,15 +4,25 @@ Sixteen voice and genre controls for **YuE2-3B**, using our native routed-partic
 
 **[Try the Space](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders)** · **[Download weights and hear Off/On samples](https://huggingface.co/ntc-ai/yue2-concept-sliders)** · **[ComfyUI guide](comfyui/ntc_yue2_sliders/README.md)** · **[Native Python guide](USAGE.md)** · **[Training math](MATH.md)**
 
-This repository contains the inference loader, ComfyUI custom node and workflow, Space source, catalog and method documentation. Original particle weights and recordings are hosted on Hugging Face; experimental ordinary LoRAs are available in GitHub Releases. The release contains final EMA checkpoints at update **1,200**, with **64 matched Off/On listening pairs**.
+This repository contains the inference loader, ComfyUI custom node and workflow, Space source, catalog and method documentation. Original particle weights and recordings are hosted on Hugging Face; experimental ordinary LoRAs are hosted on Hugging Face, with a GitHub Releases mirror. The release contains final EMA checkpoints at update **1,200**, with **64 matched Off/On listening pairs**.
 
 ## Experimental ordinary LoRAs
 
 All 16 controls also have **distilled rank-8 LoRA candidates** that use the
 standard ComfyUI **Load LoRA** node. They contain no particles or routers.
 Use MODEL strength **0** and CLIP strength **1**. Download the
-[experimental release](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917),
-which includes the standard-node workflow and matched listening comparisons.
+[ComfyUI files on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/distilled-rank8-v1/comfyui),
+[standard-node workflow](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v1/workflow.json?download=true), or
+[native files and loader](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/distilled-rank8-v1/native).
+The [model card](https://huggingface.co/ntc-ai/yue2-concept-sliders#ordinary-lora-comparisons)
+has matched listening comparisons; all 128 clips are included as FLAC and MP3.
+A [GitHub release mirror](https://github.com/mikkel/yue2-concept-sliders/releases/tag/distilled-rank8-20260917)
+provides the archive downloads.
+
+Every ComfyUI export was reproduced byte for byte with the existing
+[`convert_lora_comfyui.py` script](https://github.com/mikkel/conceptmod/blob/a5c3dd8a9cdc34a86d633b9e1aed5e7efe4bc489/scripts/convert_lora_comfyui.py)
+and passed real ComfyUI loader checks. Place the files ending in
+`_comfyui.safetensors` in `ComfyUI/models/loras/`.
 
 These approximate the particle teachers. Fidelity varies by control; the voice
 sliders are harder to match than most genre sliders. Read

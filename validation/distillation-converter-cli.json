@@ -1,0 +1,93 @@
+{
+  "converter_script": "https://github.com/mikkel/conceptmod/blob/a5c3dd8a9cdc34a86d633b9e1aed5e7efe4bc489/scripts/convert_lora_comfyui.py",
+  "converter_commit": "a5c3dd8a9cdc34a86d633b9e1aed5e7efe4bc489",
+  "cli": "python scripts/convert_lora_comfyui.py /path/to/native-files",
+  "cli_result": "16 written, 0 failed",
+  "files": [
+    {
+      "concept": "female",
+      "sha256": "fb503fb6254dbc711c6ad4a479a121dc801745c9f790e196f22211cdbda391d3",
+      "byte_identical": true
+    },
+    {
+      "concept": "male",
+      "sha256": "734cb045bf6355a8ad2b7603d44b867799da835a787eb2d3840b6676cb21db13",
+      "byte_identical": true
+    },
+    {
+      "concept": "pop",
+      "sha256": "c72dc48b2ff36e3ab98b66a5ba237c9bbcdca0db1ba9f2a5bc31e23fdbf6d066",
+      "byte_identical": true
+    },
+    {
+      "concept": "hiphop",
+      "sha256": "7ba155b956f55840fced8053e3bf6fe321ad477216b7e07e7d315ed20ffd8208",
+      "byte_identical": true
+    },
+    {
+      "concept": "rnb",
+      "sha256": "1a21c68bbcaf6eec5320387184eec6c808fa387d0ab45411522bc639c9a31b0f",
+      "byte_identical": true
+    },
+    {
+      "concept": "indie-rock",
+      "sha256": "d9dea9cde5078e38f144c023b4d48bbd39e1b7d5ceb5eb0bbcfb9b14fa59ec79",
+      "byte_identical": true
+    },
+    {
+      "concept": "pop-punk",
+      "sha256": "bb25fd59e57d3f22b8a4acab51bdbeb0f23bddab1125c035576d3fac989205c7",
+      "byte_identical": true
+    },
+    {
+      "concept": "metal",
+      "sha256": "e76bb20c356c30a043b497ca0691c912d8234e8428f9b8ee34bf5a8352797ae8",
+      "byte_identical": true
+    },
+    {
+      "concept": "country",
+      "sha256": "168476c0588ab5feb00615850c0d50c091b533df78bd46d7515ea8bdedf0e15e",
+      "byte_identical": true
+    },
+    {
+      "concept": "acoustic-folk",
+      "sha256": "32e94949675107c49c1f51930e6b52263da3ea7d79fa039e74f22b0905df679d",
+      "byte_identical": true
+    },
+    {
+      "concept": "house",
+      "sha256": "158746dcce4a5b7d67a28c26c6eb258abec80130ef8bad03da4205aa03a00cf2",
+      "byte_identical": true
+    },
+    {
+      "concept": "disco-funk",
+      "sha256": "469a922bfced7b12e2b8fb6ff1322aeaa8413be4e05e802ba916f052f4cb9ce4",
+      "byte_identical": true
+    },
+    {
+      "concept": "kpop",
+      "sha256": "bf9897b57a7a4282d50c6c7837798aba472e76d330df8cca85c8906a82cb345e",
+      "byte_identical": true
+    },
+    {
+      "concept": "reggaeton",
+      "sha256": "8560cb1c0ad1f8fed7e09e41b29786510b95e3aa9d39bd2bd1e7c174835450c6",
+      "byte_identical": true
+    },
+    {
+      "concept": "afrobeats",
+      "sha256": "59ae8c8d9056fa039666bf260b6e92de961f0d5654df0e095afe901247a75fbe",
+      "byte_identical": true
+    },
+    {
+      "concept": "lofi",
+      "sha256": "694fafebb52c849b0359c8d0a1e4f7674ca9ce5ec888509fd50364d68a429b8d",
+      "byte_identical": true
+    }
+  ],
+  "integration_tests": "3 passed; actual ComfyUI loader and weight application",
+  "comfy_commit": "387f98aa2822f684b8597959a52a467d88cc4806",
+  "audio_clips": 128,
+  "workflow_checks": "All links and standard LoRA settings validated; stale named widgets removed",
+  "full_comfyui_gpu_audio_render": false
+}
