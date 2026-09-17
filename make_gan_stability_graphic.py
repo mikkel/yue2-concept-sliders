@@ -80,7 +80,7 @@ def collect():
     released_metal = next(row for row in catalog['sliders'] if row['id'] == 'metal')
     assert digest(particle_checkpoint) == released_metal['sha256']
     with (DATA / 'training-curves.csv').open('w') as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(all_rows[0]))
+        writer = csv.DictWriter(stream, fieldnames=list(all_rows[0]), lineterminator='\n')
         writer.writeheader()
         writer.writerows(all_rows)
     evidence = dict(description='Historical native YuE2 training comparison; not a particle-only ablation',
