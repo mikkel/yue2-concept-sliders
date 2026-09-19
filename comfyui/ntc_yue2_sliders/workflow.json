@@ -104,7 +104,7 @@
         "Node name for S&R": "NTCYuE2ConceptSlider"
       },
       "widgets_values": [
-        "yue2/female_step1200.safetensors",
+        "yue2/female_step1600.safetensors",
         1
       ]
     },

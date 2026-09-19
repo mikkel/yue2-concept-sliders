@@ -1,0 +1,206 @@
+{
+  "complete": true,
+  "sliders": 16,
+  "audio_clips": 128,
+  "comfy_patches": 896,
+  "converter_commit": "a5c3dd8a9cdc34a86d633b9e1aed5e7efe4bc489",
+  "comfy_commit": "387f98aa2822f684b8597959a52a467d88cc4806",
+  "torch_version": "2.11.0+cu128",
+  "reports": [
+    {
+      "concept": "female",
+      "native_sha256": "318ddd368bd59552de42575936aa606f4b19eb3157915561568639e53324cc52",
+      "comfy_sha256": "a760f6535b9be6412aec12e8ebd30c45c7886ecb01007dc900c944d57cce4a53",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.003625050652772188,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.0012877080782921495,
+        0.02557178740062286
+      ]
+    },
+    {
+      "concept": "male",
+      "native_sha256": "d54e33bcc987d31e8143f9bb7e3ce9337e4f64c419aa61a6698a857ed643f311",
+      "comfy_sha256": "125a5e3adad5e1c541ad47bd377f1e7ff4edffc02f7552895dd6eb86dda7b5c1",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0026626037433743477,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.004124827202146183,
+        0.0018655645603930769
+      ]
+    },
+    {
+      "concept": "pop",
+      "native_sha256": "b5bf6b0f4adf115b2074beb917ca25b2791fd91cf3661271c780c2741fd44b04",
+      "comfy_sha256": "bc6642b68882fbc0f73df4a0e89a51c1ebe144bc1ded5b877b5dd157ffa48cd2",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0028699084650725126,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.0023841048091710997,
+        0.002282234366526918
+      ]
+    },
+    {
+      "concept": "hiphop",
+      "native_sha256": "70d47848af05d7c53418a18542c82b9feeb18e2acdc41c454e05906a7ca0a7a0",
+      "comfy_sha256": "544481919541a7f97fa581911a71fdeace03a55ddd15172a58a60ec60b963cad",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0025461423210799694,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.22534620195368216,
+        0.050024182422946754
+      ]
+    },
+    {
+      "concept": "rnb",
+      "native_sha256": "b3459b5fba7ca6170daa9b0383a14ba4cb45b9b4ebc6be64661b66b98adda7c9",
+      "comfy_sha256": "faa89944f0d3c9a7e17f62374e29ee76d1d82f5283674060d11a811eaf9f632d",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0023859438952058554,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.012928815161978273,
+        0.005389195955768829
+      ]
+    },
+    {
+      "concept": "indie-rock",
+      "native_sha256": "96516d60c7a4524dd77c8eb45030c00a51c12b6467445867770d99ba4954fb88",
+      "comfy_sha256": "bf97b12ae89317343b1498f0bb066dbf01aa547381d60b6cf9b163db05f1b5d9",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.003026605350896716,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.004670343084413897,
+        0.002136078832673222
+      ]
+    },
+    {
+      "concept": "pop-punk",
+      "native_sha256": "a7906eb5f111992a81d8c0ed4f67df5cdd47b891c453e5d3a7f29b4131941878",
+      "comfy_sha256": "bb8d8e4146f872c74ade1e6982946f84be1538a618a922ff9eb9674539ec34c3",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.003120454028248787,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.012234274698931165,
+        0.007379084101157731
+      ]
+    },
+    {
+      "concept": "metal",
+      "native_sha256": "5a81e845e57effdd8e5a28ac6e0747798d9e38407f7179e9375d01ad8b44e8ee",
+      "comfy_sha256": "8ae844629dcaf4fd55f13ed123f24ace69fa28951382e7652e169a6c9b7a4d5b",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0027392744086682796,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.006048762637615061,
+        0.009025872623467381
+      ]
+    },
+    {
+      "concept": "country",
+      "native_sha256": "469bd6168a7a8d46f36f66888964329cfe419e9f293d7cc1505318f4b38dfc49",
+      "comfy_sha256": "c41c13e09e0daf764808be8cdbe6970b3bce359c11460584ccb09b4d502aee2a",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.002727414481341839,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.022651759172216752,
+        0.0051623434108371245
+      ]
+    },
+    {
+      "concept": "acoustic-folk",
+      "native_sha256": "b849721f2f76b98f558d072213783730d7c88293aea5a86dbf8a313fe285bd58",
+      "comfy_sha256": "b51c0f8a80d1001e19a2650e3184ed188c3aac97c1e2cd9cb3ec5ed03a6efef0",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.002743306802585721,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.00802435167995381,
+        0.007857232780862266
+      ]
+    },
+    {
+      "concept": "house",
+      "native_sha256": "62cf7d88a5c2dc0cb91fb38ea8e3978d589709229cb8e491f285b34d30add217",
+      "comfy_sha256": "6149fcde75b7f959c323ebd90f760dc7994183aef1a9345482fddf530c06737a",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0025664856657385826,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.0863517356042559,
+        0.018698593091188032
+      ]
+    },
+    {
+      "concept": "disco-funk",
+      "native_sha256": "78d73a7ebaf12becf7409d154fed3777b15376a020d6b6e9a56c320ca335401d",
+      "comfy_sha256": "89149145bc3f69518a7b9de63672083f994786c9af66822ef11d7b521f82cb27",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0027329535223543644,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.011232160613948657,
+        0.018570856394474457
+      ]
+    },
+    {
+      "concept": "kpop",
+      "native_sha256": "e73a1ea28b576bfacb59edb85e5e535013f0640cfe91fac7cb88f3bc5aa453f4",
+      "comfy_sha256": "eca99b3b12bf94e1a605122a99c42bb3123c0d32bdb93758ee9967d20fc7458c",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0029692277312278748,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.014186495390672675,
+        0.0015971836547973677
+      ]
+    },
+    {
+      "concept": "reggaeton",
+      "native_sha256": "d38c18bc01ebd63b18bf6445ebcd8f59b5665dbba758f03b69ccc7f32870cd1a",
+      "comfy_sha256": "297623d8a2546749bfa7190acc5de7bfdb02135358156558cd7a8506f1a905ff",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0028069093823432922,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.012928259160002535,
+        0.012444192385497134
+      ]
+    },
+    {
+      "concept": "afrobeats",
+      "native_sha256": "18004cbc0af16f793c9a77371943a674728ae20184ef9296dfab7cef46d05755",
+      "comfy_sha256": "7b0be8a08aa9bb63579d3daf6f23f08f36084282c1e143be7aa2184088a86982",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.0034538088366389275,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.007608978282744983,
+        0.013864195314881773
+      ]
+    },
+    {
+      "concept": "lofi",
+      "native_sha256": "a61511ec6d6eab25813d372efda73b4e9a117bf1b4f5e89834181ac8d9b1e5dc",
+      "comfy_sha256": "14474d0273924c7abe3b3b2caae794ae9052cff9a392985ff9540f0829067db4",
+      "loaded_patches": 56,
+      "maximum_export_projection_relative_rmse": 0.002873215125873685,
+      "audio_clips": 8,
+      "acoustic_scope_relative_audio_mse": [
+        0.0032328377746929223,
+        0.007272667752293639
+      ]
+    }
+  ],
+  "version": "distilled-rank8-v2",
+  "converter_cli_byte_identical": true,
+  "full_comfyui_gpu_audio_render": false
+}

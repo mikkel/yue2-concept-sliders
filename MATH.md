@@ -1,150 +1,174 @@
-## How the sliders learn
+# YuE2 v2: routed particles trained with a global-mix critic
 
-Each control learns from four pairs of sound descriptions. The frozen YuE2 model supplies a target hidden state from the positive description; the adapted model receives the neutral description and the same lyrics. Training acts on the final prompt state, at the start of music generation. The base model, acoustic synthesis and VAE remain frozen.
+Version 2 contains the final EMA checkpoint at **1,600 updates** for all 16
+controls. The inference architecture remains the routed-particle adapter. The
+training formulation changes its training sources, error normalization, critic
+and noise schedule. The release also creates new ordinary rank-8 students from
+these exact v2 teachers. The archived v1 math describes the earlier release.
+The embedded adapter-format identifier still ends in `ar-v1`: its tensor
+layout and inference architecture are unchanged. It is separate from the
+release version and the training formulation.
 
-### Why we added particles: GAN training stability
+## Inference: a nonlinear correction in AR attention
 
-**We introduced the particle recipe to help stabilize the generator’s adversarial training.** Earlier native YuE2 GAN runs showed large generator-loss spikes and a collapse in alignment with the target hidden state. Here, **G** is the trainable slider attached to frozen YuE2; **D** is the training critic.
+YuE2 has 28 autoregressive layers. Each slider modifies their Q, K, V and O
+projections: 112 branches, each with rank/alpha 8/8. NAR attention, both MLP
+paths, embeddings, normalization, output head and VAE remain frozen. During
+native generation the adapter runs in semantic composition, and its hooks are
+removed before acoustic synthesis.
 
-The learned cloud gives G additional parameters it can move while learning the correction. The variance/covariance regularizer encourages the cloud to stay spread out. The full recipe also caps overly steep critic gradients and gradually reduces noise in the paired-error game. These are intended to make optimization more manageable; their individual contributions need separate controls.
-
-![Unsmoothed native YuE2 training curves. The original plain-LoRA recipe has a generator-loss spike of 549.8 at update 373 and loses target alignment. The particle recipe continues to 1,200 updates with much smaller spikes.](assets/gan-training-stability.svg)
-
-[Full-size SVG](assets/gan-training-stability.svg) · [PNG](assets/gan-training-stability.png) · [Archived training measurements](evidence/gan-stability/training-curves.csv) · [Recipes, source hashes and checkpoint provenance](evidence/gan-stability/provenance.json)
-
-These are existing **Metal, seed 7** runs with the same frozen base, four prompt/lyric pairs and rank-8 attention targets. Every logged update for the two displayed runs is shown, with no smoothing. The top panel is the logged **G adversarial term** (`g_adv`), excluding particle regularization; its vertical axis is logarithmic. The lower panel shows hidden-target cosine, an internal diagnostic rather than an audio-quality score.
-
-| Historical run | Recorded updates | Peak G adversarial loss | Update at peak |
-|---|---:|---:|---:|
-| Plain LoRA, original rates | 600 | **549.76** | 373 |
-| Routed-particle recipe | 1,200 | 35.66 | 945 |
-
-The particle trace ends at the **exact released Metal checkpoint**. It still has smaller spikes. This selected historical comparison does not isolate the effect of particles alone. The particle recipe additionally changes the critic, error normalization, noise, batching, optimizer settings and regularization; the loss magnitudes cannot rank these recipes independently of those changes. The dashed line marks the end of the 600-update plain-LoRA run, not a continuation of its measurements.
-
-The plain-LoRA curve above is an earlier **GAN-training experiment**. The downloadable **distilled LoRAs** were subsequently trained to imitate the particle teachers using regression and hidden-state matching. This graph does not describe their training or demonstrate a listening-quality advantage.
-
-See [ParticleGAN](https://github.com/255BITS/ParticleGAN) for the learned-particle and adversarial-training building blocks. In this release, the particles remain part of the learned forward path at inference; distillation is how we approximate that path with ordinary LoRA matrices.
-
-### Ordinary LoRA versus our particle adapter
-
-![Ordinary LoRA uses two matrices for a fixed linear correction. The particle adapter adds input-dependent routing through a shared learned cloud and a nonlinear MLP before its up projection. Both add their correction to the same frozen base projection.](assets/lora-vs-particle.svg)
-
-[Open the SVG at full size](assets/lora-vs-particle.svg).
-
-Both adapters add a correction to a frozen projection: $y=W_0x+s\Delta(x)$, where $s$ is the slider strength. The native rank and alpha are both 8, so $\alpha/r=1$ in these equations.
+For input column vector $x$, a branch uses its own down projection $V$, router
+$R$, nonlinear bridge $\phi$ and up projection $U$. The learned cloud
+$P\in\mathbb R^{128\times4}$ is shared across this slider's branches:
 
 $$
-\begin{aligned}
-\Delta_{\mathrm{LoRA}}(x) &= BAx, \\
-\Delta_{\mathrm{particle}}(x) &= U\phi\!\left([Vx,z(x)]\right).
-\end{aligned}
+a=Vx,\qquad q=R(a),\qquad
+w=\operatorname{softmax}(Pq/\sqrt4),\qquad z=P^Tw,
+\qquad y=W_0x+s\,U\phi([a;z]).
 $$
 
-- **Ordinary LoRA:** the down matrix $A$ compresses the input into eight features; the up matrix $B$ turns those features into a correction. After training, their product is one fixed matrix $\Delta W=BA$. For a fixed strength, it can be merged into the projection as $W_0+sBA$.
-- **Our particle adapter:** the down features $a=Vx$ also enter a router. Its query assigns softmax weights to the cloud $P$, producing the mixture $z(x)$. A nonlinear network $\phi$ combines the original features with that mixture before the up matrix $U$. The cloud contains 128 learned four-dimensional vectors, shared across one slider’s 112 projection branches. The vectors stay fixed during inference; their mixing weights change with the input.
+The router has three width-16 hidden layers; the bridge has three width-48
+hidden layers. Both use LeakyReLU with slope 0.2. The cloud is learned once
+per slider and stays fixed at inference; its mixing weights depend on each
+input. Strength zero bypasses the branch exactly. Strength one is the trained
+positive endpoint. Intermediate strengths scale the correction; negative
+strengths are unsupported. This nonlinear adapter cannot be merged into a
+fixed base-weight update. The critic is used only in training.
 
-An ordinary LoRA still gives different corrections for different inputs, and the full YuE2 model remains nonlinear. The extra capability here is **nonlinear computation inside the adapter itself**. In general, that whole computation cannot be represented by one fixed weight update. It does not establish that particles produce better music.
+## Seedbank supervision
 
-**Distillation** learns new matrices $A$ and $B$ so that $BAx$ approximates the entire particle correction on representative activations. It is a learned approximation, not removal of the particle tensors from an existing checkpoint. The original teacher’s $U,V$ and the distilled student’s $A,B$ are separate parameters.
+Each of four sound-only caption/lyric templates supplies **128 distinct
+continuation seeds**, giving 512 training sources. For each source the frozen
+base generates a **32-token neutral history**. The same history is appended
+to the neutral and positive prefixes. Their final hidden states are $n_i$ and
+$t_i$; the student on the neutral prefix and that history produces $g_i$.
+The target is the raw positive state $t_i$. This is supervision at the end of
+each sampled history, rather than a loss on every music token.
 
-**ParticleGAN reference:** this experiment draws on [ParticleGAN](https://github.com/255BITS/ParticleGAN), with [reference revision `441fdf42`](https://github.com/255BITS/ParticleGAN/tree/441fdf42dd2c0905af312a303add422f700c0ac2), for learned particles, paired adversarial training, the gradient cap and the particle variance/covariance regularizer. The routed transformer adapter in this diagram is our YuE2 implementation. The critic is used during training; it is not part of either inference path shown here.
+The generator and critic independently draw batches of eight sources with
+replacement. Repeated sources share a model forward within a phase but receive
+independent noise draws. The run seed is 7. The kept Female and Male runs use
+the expanded vocal cues and the h13 noise hold recorded in their metadata.
+The failed one-word Male run and the superseded gender candidates are excluded.
 
-### One strength control, with learned particle routing
+## Normalize the paired edit
 
-Each autoregressive attention projection gets a nonlinear residual branch. For an input vector `x`, first compute rank-8 features and route them through one shared particle cloud:
-
-$$
-\begin{aligned}
-a &= Vx, & q &= \rho(a), \\
-w &= \mathrm{softmax}\!\left(\frac{Pq}{\sqrt{d_p}}\right),
-& z &= P^\top w, \\
-f_s(x) &= f_0(x) + s\,\frac{\alpha}{r}\,U\phi([a,z]).
-\end{aligned}
-$$
-
-Here `f₀` is the frozen projection, `V` and `U` are learned down/up projections, and `s` is the slider strength. The rank and alpha are both **8**, so their ratio is 1. The shared cloud `P` contains **128 learned particles in 4 dimensions** (`dₚ = 4`). Each projection has its own router `ρ` and routed MLP `φ`: three hidden layers of width 16 and 48, respectively, with LeakyReLU slope 0.2.
-
-At **0**, the implementation bypasses the entire branch and returns the base projection exactly. At **1**, it applies the trained positive endpoint. Intermediate values scale the residual; the resulting music need not change linearly. Negative strength is an untrained canary. The up projection starts at zero, so a fresh adapter initially preserves the base model. Learned routing runs during ordinary inference as well as training; all projections in one slider share the same cloud.
-
-### Normalize the error against the target description
-
-Let `hᵢ⁺` be the frozen model's final prompt state for training row `i` under the positive caption, and `hᵢθ` the adapted state under its neutral caption. The lyric sheet is identical within the pair. Normalize each coordinate using the training positive states only:
-
-$$
-\begin{aligned}
-T(h) &= \frac{h-\mu_+}{\max(\mathrm{std}_{\mathrm{sample}}(h^+),10^{-4})}, \\
-e_i &= T(h_i^\theta)-T(h_i^+).
-\end{aligned}
-$$
-
-The mean and sample standard deviation are fixed after preparation. The floor and division act coordinate by coordinate. Held-out prompts never enter these statistics.
-
-### Learn with a paired-error critic
-
-At update `t`, draw Gaussian noise and add the adapted model's normalized error to a copy of the **same** noise:
+Let $e_i=t_i-n_i$ and $H=2048$. Compute sample standard deviations over the
+512 paired edits, then choose a scalar gain so their median normalized row
+RMS is one:
 
 $$
-\begin{aligned}
-\sigma_t &= 0.03^{\min(t/8000,\,1)}, &
-n &\sim \mathcal N(0,\sigma_t^2 I), \\
-x_{\mathrm{real}} &= n, &
-x_{\mathrm{fake}} &= n+e_i.
-\end{aligned}
+d_j=\max(\operatorname{std}_i(e_{ij}),10^{-4}),\qquad
+m=\max\left(\operatorname{median}_i
+\sqrt{\frac1H\sum_j(e_{ij}/d_j)^2},10^{-4}\right),\qquad
+s_j=m\,d_j,\qquad
+E=\sqrt{\frac1{NH}\sum_{i,j}(e_{ij}/s_j)^2}.
 $$
 
-The critic `D` is a scalar MLP with three width-48 hidden layers. Its relativistic loss encourages a higher score for the noise-only input than for noise plus error. The adapter reverses that ordering:
+The implementation normalizes hidden states as
+$\tilde h=(h-\operatorname{mean}_i t_i)/s$. The mean cancels in the paired
+error, so the critic sees $(g_i-t_i)/s$. In v1 the coordinate scales came
+from absolute target states. Here they come from the desired edit, so small
+vocal edits are not measured against the much larger spread of unrelated
+hidden states. Median row RMS is one; overall RMS $E$ generally differs from
+one. `teacher-audit.json` records both the normalization and initial noise.
+
+## Paired-error game and noise
+
+For each source draw one shared Gaussian vector for its real/fake pair:
 
 $$
-\begin{aligned}
-\mathcal L_D &= \mathbb E\!\left[
-\mathrm{softplus}\big(D(x_{\mathrm{fake}})-D(x_{\mathrm{real}})\big)
-\right] + \mathcal R_{\mathrm{cap}}, \\
-\mathcal L_G &= \mathbb E\!\left[
-\mathrm{softplus}\big(D(x_{\mathrm{real}})-D(x_{\mathrm{fake}})\big)
-\right] + \mathcal V(P_S).
-\end{aligned}
+\epsilon_i\sim\mathcal N(0,\sigma_t^2I),\qquad
+r_i=\epsilon_i,\qquad
+f_i=\epsilon_i+(g_i-t_i)/s,\qquad
+\sigma_t^{\rm raw}=\sigma_0
+\left(\frac{0.03}{\sigma_0}\right)^{\min(t/T,1)},\qquad
+\sigma_0=\max(E/0.28,0.03).
 $$
 
-`softplus(u) = log(1 + exp(u))`. Each expectation averages **64 independently sampled row/noise pairs**, with training rows sampled with replacement. The critic and generator draw separate batches. The critic updates first; the generator then recomputes its objective through the updated critic with the critic's parameters frozen. Repeated deterministic prompt rows share a model forward, while each noise draw contributes separately to the loss.
+The v2 set spans three recorded schedules. **Metal** has $T=8000$ and its
+original exponential anneal (the final recorded noise is about 1.537).
+**Pop and Hip-Hop** have $T=1600$ with a fixed hold of 1; Pop resumed with
+the hold after update 462. The other 13 controls, including both kept gender
+runs, use $T=1600$ and $\sigma_t=\max(\sigma_t^{\rm raw},1.3E)$.
+For those holds the exponential start exceeds the hold. Consequently the
+release does **not** reach noise 0.03 at update 1600. Per-run traces and
+normalization audits are included in `evidence/particle-gmix-1600-v2/`.
 
-### Cap steep critic gradients
+## Global-mix critic
 
-The cap penalizes input-gradient norms only above 1, on both real and fake coordinates:
-
-$$
-\mathcal R_{\mathrm{base}} = \frac{1}{2}
-\sum_{u\in\{x_{\mathrm{real}},x_{\mathrm{fake}}\}}
-\mathbb E\!\left[
-\max\!\left(0,\lVert\nabla_u D(u)\rVert_2-1\right)^2
-\right].
-$$
-
-The implementation uses exact autograd and computes the norm as `sqrt(sum(g²) + 10⁻¹²)`. The cap coefficient is **1**. It is evaluated every fourth update, with **4 × Rbase** on those updates and zero on the others. This lazy schedule retains the penalty's average weighting.
-
-### Keep the particle cloud spread out
-
-For each generator update, sample **64 of the 128 particles without replacement**. Let `Pₛ` be this subset and `C` its sample covariance matrix, using denominator 63. The particle regularizer is:
-
-$$
-\mathcal V(P_S) =
-\frac{1}{d_p}\sum_{j=1}^{d_p}
-\max\!\left(0,1-\sqrt{C_{jj}+10^{-4}}\right)
-+\frac{1}{d_p}\sum_{j\ne k} C_{jk}^{\,2},
-\qquad d_p=4.
-$$
-
-The first term penalizes collapsed particle coordinates; the second penalizes covariance between different coordinates. Its coefficient is **1**. Gradients from the adversarial loss also reach the particles through the router. The generator objective has no additional output MSE, feature-matching, lyric-hold or ending-supervision term.
-
-### Export the moving average
-
-After each generator update, average every learned adapter parameter, including the routers and particle cloud:
+The critic learns a linear map from all 2048 error coordinates into eight
+48-dimensional tokens and adds learned token positions. One four-head
+attention block processes those tokens. Each token can mix the entire hidden
+state; contiguous hidden coordinates are not assumed to be meaningful patches.
+The block uses RMS normalization, residual self-attention and a residual MLP.
+Afterward the critic independently RMS-normalizes the mean and elementwise
+maximum across tokens, concatenates them, and predicts a bounded score:
 
 $$
-\bar\theta_t = 0.995\,\bar\theta_{t-1} + 0.005\,\theta_t.
+X=\operatorname{reshape}_{8\times48}(Ae+b)+P_D,\qquad
+Z=\operatorname{AttentionBlock}(X),\qquad
+D(e)=8\tanh\left(
+\frac{u^T[\operatorname{RMSNorm}(\operatorname{mean}Z);
+\operatorname{RMSNorm}(\operatorname{max}Z)]+b_D}{8}
+\right).
 $$
 
-The published files contain this **EMA at update 1,200**. Adam uses betas `(0, 0.999)`, zero weight decay and constant learning rates: **0.0006** for the adapter projections/MLPs/routers, **0.006** for the particles, and **0.0009** for the critic. The shared cloud is registered and optimized once per slider.
+The actual checkpoint setting is `gmix_t8_w48_l1`, with four heads and score
+bound 8. Later trainer defaults are not a description of these trained files.
 
-The 8,000-update noise schedule is not compressed to the release budget: at update 1,200, the noise standard deviation is still about **0.591**. These are fixed-budget experimental checkpoints. The equations and hidden-state diagnostics do not establish an audio-quality, lyric-preservation or natural-ending guarantee. Automatic duration in the Space uses the native sampler's ending decision; it does not add an ending loss to these trained weights.
+## Objectives, gradient cap and moving average
 
-[Exact method and architecture record](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/FORMULATION.md) · [Checkpoint and audio audit](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/evidence/particle-1200-v1/integrity.json) · [Native loader source hashes](source-provenance.json)
+Using paired relativistic logistic losses:
+
+$$
+L_D=\mathbb E\,\operatorname{softplus}(D(f)-D(r))+R_D,
+\qquad
+L_G=\mathbb E\,\operatorname{softplus}(D(r)-D(f))+\mathcal V(P_S).
+$$
+
+Every fourth update applies the lazy gradient cap
+
+$$
+R_D=4\cdot\frac12\left(
+\mathbb E_r[\max(0,\|\nabla_rD\|_2-1)^2]+
+\mathbb E_f[\max(0,\|\nabla_fD\|_2-1)^2]\right).
+$$
+
+It is zero on other updates. The factor four compensates for the lazy
+frequency. A fresh subset of 64 particles, sampled without replacement, gives
+sample covariance $C$ with denominator 63. Its variance/covariance penalty is
+
+$$
+\mathcal V(P_S)=\frac14\sum_{j=1}^4
+\max(0,1-\sqrt{C_{jj}+10^{-4}})
++\frac14\sum_{j\ne k}C_{jk}^2.
+$$
+
+There is no extra output MSE, lyric preservation or ending loss in teacher
+training. Adam uses betas $(0,0.999)$, zero weight decay and constant rates:
+0.0006 for the adapter branches, 0.006 for the shared particles, and 0.0009 for
+the critic. After each update all learned adapter parameters enter an EMA:
+
+$$\bar\theta_t=0.995\bar\theta_{t-1}+0.005\theta_t.$$
+
+The release uses final EMA weights, not a listening-quality selection. Training
+cosines and critic losses diagnose hidden-state optimization; they do not
+establish perceptual quality, lyric preservation or natural endings.
+
+## Ordinary LoRA distillation and ComfyUI
+
+For each exact v2 teacher, regression fits a rank-8 linear down projection to
+its routed features while retaining its up projection. Hidden-state refinement
+then optimizes both matrices, selecting on a reserved training lyric sheet.
+The two evaluation lyric sheets stay excluded from fitting and selection.
+See [DISTILLATION.md](DISTILLATION.md) for the regression, refinement and
+held-out error equations and the resulting measurements.
+
+An ordinary student adds $sBAx$. ComfyUI fuses Q/K/V by concatenating their
+down matrices and placing their up matrices on a block diagonal: fused QKV
+rank 24, O rank 8, with alpha/rank preserved. Conversion is exact before BF16
+rounding; teacher-to-student distillation is an approximation. Standard
+**Load LoRA**, MODEL **0**, CLIP **1**, also affects acoustic-prefix processing.
+The native particle custom node applies its correction only during AR
+generation. The included comparisons expose this scope difference.

@@ -8,7 +8,7 @@ For GitHub installation, clone `https://github.com/mikkel/yue2-concept-sliders.g
 
 1. Update ComfyUI to a version with its built-in **YuE2 Generate Music** node. This package targets the official ComfyUI YuE2 integration.
 2. [Download the custom-node ZIP](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/comfyui/ntc_yue2_sliders.zip) and extract its `ntc_yue2_sliders` folder into `ComfyUI/custom_nodes/`.
-3. Download the native slider files from [weights/particle-1200-v1](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/weights/particle-1200-v1) into `ComfyUI/models/loras/yue2/`. The `.safetensors` file is sufficient; metadata is embedded.
+3. Download the native slider files from [weights/particle-gmix-1600-v2](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/weights/particle-gmix-1600-v2) into `ComfyUI/models/loras/yue2/`. The `.safetensors` file is sufficient; metadata is embedded.
 4. Restart ComfyUI. No extra Python packages are required beyond current ComfyUI.
 
 Use the [official ComfyUI YuE2 checkpoint](https://huggingface.co/Comfy-Org/YuE2), `yue2_3b_bf16.safetensors`, in `ComfyUI/models/checkpoints/`.
@@ -23,7 +23,7 @@ Load Checkpoint (YuE2) · CLIP
         → YuE2 Generate Music · clip
 ```
 
-Select a native checkpoint such as `yue2/female_step1200.safetensors`. Strength `0` bypasses the node exactly, `0.5` is intermediate and `1` is the trained positive endpoint. Leave the existing MODEL, VAE, sampler and audio-output connections in your YuE2 workflow as they are. A complete workflow is included as `workflow.json`; drag it into ComfyUI after installing the node and weights. Its sampler and audio connections follow the [official YuE2 template](https://github.com/Comfy-Org/workflow_templates/blob/main/templates/audio_yue2_text2music.json), with our original release caption and lyrics. The upstream template's MIT notice is included in `WORKFLOW_LICENSE`.
+Select a native checkpoint such as `yue2/female_step1600.safetensors`. Strength `0` bypasses the node exactly, `0.5` is intermediate and `1` is the trained positive endpoint. Leave the existing MODEL, VAE, sampler and audio-output connections in your YuE2 workflow as they are. A complete workflow is included as `workflow.json`; drag it into ComfyUI after installing the node and weights. Its sampler and audio connections follow the [official YuE2 template](https://github.com/Comfy-Org/workflow_templates/blob/main/templates/audio_yue2_text2music.json), with our original release caption and lyrics. The upstream template's MIT notice is included in `WORKFLOW_LICENSE`.
 
 Start with an empty ABC input to match the release's off-mode examples. YuE2 Generate Music chooses its ending naturally, up to its `max_duration` guard; leave that at `360` for the native six-minute guard. Connect its returned seconds to Empty YuE2 Latent Audio. If using Generate ABC, the same patched CLIP can feed that node too.
 

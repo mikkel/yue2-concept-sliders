@@ -113,7 +113,7 @@
         "Node name for S&R": "LoraLoader"
       },
       "widgets_values": [
-        "female_distilled_refined_rank8_comfyui.safetensors",
+        "metal_v2_distilled_rank8_comfyui.safetensors",
         0,
         1
       ],

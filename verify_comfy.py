@@ -17,6 +17,9 @@ COMFY = Path(sys.argv[1]).resolve()
 sys.path[:0] = [str(COMFY), str(HERE / "comfyui")]
 sys.argv = [sys.argv[0], "--cpu"]
 
+import comfy.options
+comfy.options.enable_args_parsing()
+
 import torch
 from torch import nn
 from safetensors.torch import load_file, save_file

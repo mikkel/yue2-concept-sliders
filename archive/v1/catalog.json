@@ -1,0 +1,1051 @@
+{
+  "schema_version": 1,
+  "release": "particle-1200-v1",
+  "base_model": "m-a-p/YuE2-3B",
+  "base_revision": "14fc6c6f146441b1dd6363fcb2e01e82a6914cb7",
+  "vae": "m-a-p/YuE2-Vae",
+  "vae_revision": "9a94e1d0ea9f8087e98f77fa88df4a4068104d2a",
+  "format": "conceptmod-yue2-routed-particle-ar-v1",
+  "sliders": [
+    {
+      "id": "female",
+      "label": "Female",
+      "description": "One adult female lead, with the song's phrasing and timbre intact",
+      "weights": "weights/particle-1200-v1/female_step1200.safetensors",
+      "sha256": "e282223fffb2b4f8988c86775d38ead1a70169a5238516e455f1f658f29eb888",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/female-train.yaml",
+        "eval": "prompts/particle-1200-v1/female-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/female/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/female/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/female/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/female/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/female/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/female/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/female/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/female/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/female/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/female/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 78. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/female/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/female/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/female/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/female/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/female/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 78. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/female/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/female/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/female/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/female/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/female/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "male",
+      "label": "Male",
+      "description": "One adult male lead, with the song's phrasing and timbre intact",
+      "weights": "weights/particle-1200-v1/male_step1200.safetensors",
+      "sha256": "add10cacd0c51dc7ea5cc33c8e8852735794a5658575d1201b27b273ba86456a",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/male-train.yaml",
+        "eval": "prompts/particle-1200-v1/male-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/male/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/male/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/male/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/male/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/male/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/male/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/male/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/male/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/male/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/male/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 78. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/male/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/male/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/male/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/male/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/male/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 78. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/male/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/male/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/male/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/male/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/male/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "pop",
+      "label": "Pop",
+      "description": "Clear hooks, crisp drums and a polished chorus",
+      "weights": "weights/particle-1200-v1/pop_step1200.safetensors",
+      "sha256": "97bbbf5e29e2f6821bdeb217d45e916de3c64e5fcaac14256fa1b259d5eca83b",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/pop-train.yaml",
+        "eval": "prompts/particle-1200-v1/pop-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 118. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/pop/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/pop/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/pop/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/pop/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 118. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/pop/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/pop/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/pop/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/pop/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/pop/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/pop/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/pop/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/pop/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/pop/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/pop/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/pop/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/pop/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "hiphop",
+      "label": "Hip-Hop",
+      "description": "Rapped verses, deep sub bass and nimble hats",
+      "weights": "weights/particle-1200-v1/hiphop_step1200.safetensors",
+      "sha256": "90a9ca175dfd925c89889e0083f0cbfdec57393c0241d39714b54206d97a4bd2",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/hiphop-train.yaml",
+        "eval": "prompts/particle-1200-v1/hiphop-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/hiphop/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/hiphop/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/hiphop/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/hiphop/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/hiphop/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/hiphop/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/hiphop/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/hiphop/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/hiphop/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/hiphop/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 146. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/hiphop/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/hiphop/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/hiphop/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/hiphop/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/hiphop/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 146. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/hiphop/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/hiphop/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/hiphop/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/hiphop/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/hiphop/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "rnb",
+      "label": "R&B",
+      "description": "Warm keys, deep pocket and fluid vocal phrasing",
+      "weights": "weights/particle-1200-v1/rnb_step1200.safetensors",
+      "sha256": "5c6bed88079bc46e3e2ff88e5e8c5d34b6d4426b55ba2a6e0550296664cd6baf",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/rnb-train.yaml",
+        "eval": "prompts/particle-1200-v1/rnb-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 100. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/rnb/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/rnb/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/rnb/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/rnb/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/rnb/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 100. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/rnb/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/rnb/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/rnb/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/rnb/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/rnb/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 112. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/rnb/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/rnb/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/rnb/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/rnb/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/rnb/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 112. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/rnb/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/rnb/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/rnb/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/rnb/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/rnb/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "indie-rock",
+      "label": "Indie Rock",
+      "description": "Chiming guitars, moving bass and a human drum kit",
+      "weights": "weights/particle-1200-v1/indie-rock_step1200.safetensors",
+      "sha256": "b69e5ed1925aea578786ed5d2917c4a0676f901c4cca906a5ba8443929227931",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/indie-rock-train.yaml",
+        "eval": "prompts/particle-1200-v1/indie-rock-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 124. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/indie-rock/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/indie-rock/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/indie-rock/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/indie-rock/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/indie-rock/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 124. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/indie-rock/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/indie-rock/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/indie-rock/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/indie-rock/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/indie-rock/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 138. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/indie-rock/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/indie-rock/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/indie-rock/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/indie-rock/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/indie-rock/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 138. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/indie-rock/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/indie-rock/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/indie-rock/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/indie-rock/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/indie-rock/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "pop-punk",
+      "label": "Pop Punk",
+      "description": "Palm-muted power chords and driving chorus drums",
+      "weights": "weights/particle-1200-v1/pop-punk_step1200.safetensors",
+      "sha256": "19d065e1f6d869842bc96a89c1c2776c3d90c78cfa5707ba4a218949522d43bf",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/pop-punk-train.yaml",
+        "eval": "prompts/particle-1200-v1/pop-punk-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 158. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/pop-punk/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/pop-punk/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/pop-punk/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/pop-punk/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop-punk/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 158. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/pop-punk/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/pop-punk/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/pop-punk/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/pop-punk/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop-punk/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 178. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/pop-punk/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/pop-punk/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/pop-punk/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/pop-punk/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop-punk/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 178. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/pop-punk/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/pop-punk/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/pop-punk/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/pop-punk/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/pop-punk/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "metal",
+      "label": "Metal",
+      "description": "Heavy guitar riffs, tight kicks and big melodic choruses",
+      "weights": "weights/particle-1200-v1/metal_step1200.safetensors",
+      "sha256": "9cebb1913b9e94276cb641b843db489be92894f2bd5b6c76ad7235120082e7d5",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/metal-train.yaml",
+        "eval": "prompts/particle-1200-v1/metal-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "English. BPM 120. Meter 4/4. One adult female lead vocalist. Clearly articulated melodic singing, no spoken or rapped delivery. Verse and chorus. A guitar-led band song. Electric guitars play chord changes over electric bass and a steady drum kit. A clear lead vocal and a balanced studio mix.",
+          "lyrics": "[verse]\nThe fabric hangs across the doorway\nA silver pin is in the seam\nWe turn the pattern on the table\nAnd measure twice across the sleeve\n[chorus]\nWe make a little room to carry\nThe things we gathered on the way",
+          "off": "samples/particle-1200-v1/metal/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/metal/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/metal/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/metal/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/metal/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "English. BPM 120. Meter 4/4. One adult female lead vocalist. Clearly articulated melodic singing, no spoken or rapped delivery. Verse and chorus. A guitar-led band song. Electric guitars play chord changes over electric bass and a steady drum kit. A clear lead vocal and a balanced studio mix.",
+          "lyrics": "[verse]\nThe fabric hangs across the doorway\nA silver pin is in the seam\nWe turn the pattern on the table\nAnd measure twice across the sleeve\n[chorus]\nWe make a little room to carry\nThe things we gathered on the way",
+          "off": "samples/particle-1200-v1/metal/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/metal/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/metal/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/metal/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/metal/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "English. BPM 92. Meter 4/4. One adult male lead vocalist. Clearly articulated melodic singing, no spoken or rapped delivery. Verse and chorus. A guitar-led band song. Electric guitars play chord changes over electric bass and a steady drum kit. A clear lead vocal and a balanced studio mix.",
+          "lyrics": "[verse]\nThe ceiling fan turns in the kitchen\nTwo empty crates are on the floor\nWe set the peaches by the window\nAnd write the count beside the door\n[chorus]\nWe make a little room to carry\nThe things we gathered on the way",
+          "off": "samples/particle-1200-v1/metal/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/metal/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/metal/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/metal/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/metal/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "English. BPM 92. Meter 4/4. One adult male lead vocalist. Clearly articulated melodic singing, no spoken or rapped delivery. Verse and chorus. A guitar-led band song. Electric guitars play chord changes over electric bass and a steady drum kit. A clear lead vocal and a balanced studio mix.",
+          "lyrics": "[verse]\nThe ceiling fan turns in the kitchen\nTwo empty crates are on the floor\nWe set the peaches by the window\nAnd write the count beside the door\n[chorus]\nWe make a little room to carry\nThe things we gathered on the way",
+          "off": "samples/particle-1200-v1/metal/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/metal/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/metal/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/metal/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/metal/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "country",
+      "label": "Country",
+      "description": "Acoustic strum, twangy fills and an easy backbeat",
+      "weights": "weights/particle-1200-v1/country_step1200.safetensors",
+      "sha256": "42233856680487cddaf02591412e49e76b4e46c4503307892a281f0ee5794b77",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/country-train.yaml",
+        "eval": "prompts/particle-1200-v1/country-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 110. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/country/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/country/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/country/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/country/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/country/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 110. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/country/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/country/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/country/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/country/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/country/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/country/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/country/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/country/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/country/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/country/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/country/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/country/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/country/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/country/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/country/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "acoustic-folk",
+      "label": "Acoustic Folk",
+      "description": "Fingerpicked strings and a warm small-room performance",
+      "weights": "weights/particle-1200-v1/acoustic-folk_step1200.safetensors",
+      "sha256": "2a9d3bfd200131726a5f94968de88614f4b9eb45ece5179efc66b8d5a09d3e2e",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/acoustic-folk-train.yaml",
+        "eval": "prompts/particle-1200-v1/acoustic-folk-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 94. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/acoustic-folk/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/acoustic-folk/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/acoustic-folk/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/acoustic-folk/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/acoustic-folk/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 94. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/acoustic-folk/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/acoustic-folk/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/acoustic-folk/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/acoustic-folk/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/acoustic-folk/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 108. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/acoustic-folk/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/acoustic-folk/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/acoustic-folk/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/acoustic-folk/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/acoustic-folk/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 108. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/acoustic-folk/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/acoustic-folk/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/acoustic-folk/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/acoustic-folk/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/acoustic-folk/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "house",
+      "label": "House",
+      "description": "Steady club kick, offbeat hats and a rolling bass line",
+      "weights": "weights/particle-1200-v1/house_step1200.safetensors",
+      "sha256": "87e893bdc839ae9051d5a14a0930708931243b464a094139123bd0949abbeeee",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/house-train.yaml",
+        "eval": "prompts/particle-1200-v1/house-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 128. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/house/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/house/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/house/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/house/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/house/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 128. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/house/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/house/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/house/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/house/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/house/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/house/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/house/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/house/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/house/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/house/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/house/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/house/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/house/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/house/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/house/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "disco-funk",
+      "label": "Disco Funk",
+      "description": "Elastic bass, clipped guitar and bright dance-floor strings",
+      "weights": "weights/particle-1200-v1/disco-funk_step1200.safetensors",
+      "sha256": "631b4ab4b7ee09735c0a26464e0a6b4efd4686ced0dcc53ad5c11a3f26080364",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/disco-funk-train.yaml",
+        "eval": "prompts/particle-1200-v1/disco-funk-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 118. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/disco-funk/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/disco-funk/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/disco-funk/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/disco-funk/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/disco-funk/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 118. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/disco-funk/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/disco-funk/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/disco-funk/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/disco-funk/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/disco-funk/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/disco-funk/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/disco-funk/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/disco-funk/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/disco-funk/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/disco-funk/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 126. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/disco-funk/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/disco-funk/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/disco-funk/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/disco-funk/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/disco-funk/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "kpop",
+      "label": "K-pop",
+      "description": "Sharp synth hooks, tight edits and a big chorus lift",
+      "weights": "weights/particle-1200-v1/kpop_step1200.safetensors",
+      "sha256": "d1e39ee784b2a6f0391547215cf3d864c5e0b22fd5e0f127b56df27d5613c527",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/kpop-train.yaml",
+        "eval": "prompts/particle-1200-v1/kpop-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 120. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/kpop/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/kpop/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/kpop/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/kpop/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/kpop/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 120. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/kpop/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/kpop/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/kpop/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/kpop/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/kpop/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/kpop/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/kpop/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/kpop/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/kpop/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/kpop/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 134. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/kpop/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/kpop/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/kpop/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/kpop/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/kpop/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "reggaeton",
+      "label": "Reggaeton",
+      "description": "Dembow drums, rounded sub bass and clipped melodic hooks",
+      "weights": "weights/particle-1200-v1/reggaeton_step1200.safetensors",
+      "sha256": "c14cf0fa4d2f106ac0479423e8f7aebba8139d31d760ab56af07fe274d554d14",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/reggaeton-train.yaml",
+        "eval": "prompts/particle-1200-v1/reggaeton-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/reggaeton/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/reggaeton/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/reggaeton/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/reggaeton/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/reggaeton/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/reggaeton/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/reggaeton/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/reggaeton/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/reggaeton/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/reggaeton/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 116. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/reggaeton/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/reggaeton/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/reggaeton/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/reggaeton/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/reggaeton/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 116. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/reggaeton/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/reggaeton/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/reggaeton/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/reggaeton/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/reggaeton/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "afrobeats",
+      "label": "Afrobeats",
+      "description": "Interlocking percussion, melodic bass and buoyant guitar",
+      "weights": "weights/particle-1200-v1/afrobeats_step1200.safetensors",
+      "sha256": "a7c9bd8228375b77afd48da3e6cfbbf3d971ec838f0385d575c75b9f9c858755",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/afrobeats-train.yaml",
+        "eval": "prompts/particle-1200-v1/afrobeats-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 112. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/afrobeats/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/afrobeats/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/afrobeats/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/afrobeats/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/afrobeats/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 112. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/afrobeats/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/afrobeats/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/afrobeats/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/afrobeats/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/afrobeats/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 122. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/afrobeats/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/afrobeats/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/afrobeats/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/afrobeats/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/afrobeats/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 122. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/afrobeats/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/afrobeats/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/afrobeats/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/afrobeats/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/afrobeats/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    },
+    {
+      "id": "lofi",
+      "label": "Lo-fi",
+      "description": "Soft swung drums, mellow keys and gentle tape warmth",
+      "weights": "weights/particle-1200-v1/lofi_step1200.safetensors",
+      "sha256": "b3de1a4b2f6920d866222f12700f8b4ec8757d1e270593d14b3a72eab367edb4",
+      "step": 1200,
+      "weights_kind": "ema",
+      "backend": "yue2",
+      "host": "ar",
+      "recommended_range": [
+        0,
+        1
+      ],
+      "prompts": {
+        "train": "prompts/particle-1200-v1/lofi-train.yaml",
+        "eval": "prompts/particle-1200-v1/lofi-eval.yaml"
+      },
+      "samples": [
+        {
+          "row": 0,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 90. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/lofi/row0-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/lofi/row0-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/lofi/row0-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/lofi/row0-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/lofi/row0-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 0,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: electronic song. BPM 90. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult male lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Short synth chords carry the harmony over soft synth bass and a sparse electronic beat.\nChorus: The short synth chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nThe painted number leaves the mailbox\nA crooked nail holds on the frame\nWe take a brush out to the pavement\nAnd give the little door a name\n[chorus]\nThe street is changing by the hour\nBut there is room for us to stay",
+          "off": "samples/particle-1200-v1/lofi/row0-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/lofi/row0-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/lofi/row0-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/lofi/row0-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/lofi/row0-seed2903-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 1709,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 102. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/lofi/row1-seed1709-off.mp3",
+          "half": "samples/particle-1200-v1/lofi/row1-seed1709-half.mp3",
+          "on": "samples/particle-1200-v1/lofi/row1-seed1709-on.mp3",
+          "reference": "samples/particle-1200-v1/lofi/row1-seed1709-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/lofi/row1-seed1709-minus-canary.mp3"
+        },
+        {
+          "row": 1,
+          "seed": 2903,
+          "caption": "Global Metadata:\nGenre: string-led song. BPM 102. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.\nVocal Details:\nOne adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.\nArrangement:\nVerse: Plucked acoustic strings carry the harmony over acoustic bass and a shaker and soft hand drum.\nChorus: The plucked acoustic strings broaden and the rhythm adds a light accent at the section change, leaving space for the lead.",
+          "lyrics": "[verse]\nI find your glove beneath the cushion\nThe missing button turns up too\nA small receipt falls from the lining\nFor something neither of us knew\n[chorus]\nWe put the scattered things together\nAnd leave a little room to move",
+          "off": "samples/particle-1200-v1/lofi/row1-seed2903-off.mp3",
+          "half": "samples/particle-1200-v1/lofi/row1-seed2903-half.mp3",
+          "on": "samples/particle-1200-v1/lofi/row1-seed2903-on.mp3",
+          "reference": "samples/particle-1200-v1/lofi/row1-seed2903-reference.mp3",
+          "minus-canary": "samples/particle-1200-v1/lofi/row1-seed2903-minus-canary.mp3"
+        }
+      ]
+    }
+  ]
+}
