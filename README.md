@@ -147,14 +147,14 @@ y=W_0x+s\Delta(x),\qquad
 \Delta_{\mathrm{particle}}(x)=U\phi([Vx;z(x)]).
 $$
 
-An ordinary LoRA compresses the input with $A$ and expands it with $B$.
-Their product is a fixed matrix, so the update can be merged as $W_0+sBA$.
+An ordinary LoRA compresses the input with A and expands it with B.
+Their product is a fixed matrix, so the update can be merged as W₀ + sBA.
 The particle adapter also routes the compressed input through its cloud to
-obtain $z(x)$. Its nonlinear bridge combines these features before $U$.
+obtain z(x). Its nonlinear bridge combines these features before U.
 The extra capability is nonlinear computation inside the adapter itself;
 the full base model remains nonlinear in both cases.
 
-**Distill** learns separate matrices $A,B$ to approximate the teacher's
+**Distill** learns separate matrices A and B to approximate the teacher's
 whole correction on representative activations. It trades that nonlinear
 inference path for the simple two-matrix update supported by ordinary LoRA
 loaders. The architecture diagram applies to both v1 and v2.
@@ -167,9 +167,9 @@ paths, embeddings, normalization, output head and VAE remain frozen. During
 native generation the adapter runs in semantic composition, and its hooks are
 removed before acoustic synthesis.
 
-For input column vector $x$, a branch uses its own down projection $V$, router
-$R$, nonlinear bridge $\phi$ and up projection $U$. The learned cloud
-$P\in\mathbb R^{128\times4}$ is shared across this slider's branches:
+For input column vector x, a branch uses its own down projection V, router
+R, nonlinear bridge φ and up projection U. The learned cloud P contains
+128 four-dimensional vectors shared across this slider's branches:
 
 $$
 a=Vx,\qquad q=R(a),\qquad
@@ -190,9 +190,9 @@ fixed base-weight update. The critic is used only in training.
 Each of four sound-only caption/lyric templates supplies **128 distinct
 continuation seeds**, giving 512 training sources. For each source the frozen
 base generates a **32-token neutral history**. The same history is appended
-to the neutral and positive prefixes. Their final hidden states are $n_i$ and
-$t_i$; the student on the neutral prefix and that history produces $g_i$.
-The target is the raw positive state $t_i$. This is supervision at the end of
+to the neutral and positive prefixes. Their final hidden states are nᵢ and
+tᵢ; the student on the neutral prefix and that history produces gᵢ.
+The target is the raw positive state tᵢ. This is supervision at the end of
 each sampled history, rather than a loss on every music token.
 
 The generator and critic independently draw batches of eight sources with
@@ -203,7 +203,7 @@ The failed one-word Male run and the superseded gender candidates are excluded.
 
 ### Normalize the paired edit
 
-Let $e_i=t_i-n_i$ and $H=2048$. Compute sample standard deviations over the
+Let eᵢ = tᵢ − nᵢ and H = 2048. Compute sample standard deviations over the
 512 paired edits, then choose a scalar gain so their median normalized row
 RMS is one:
 
@@ -215,12 +215,12 @@ s_j=m\,d_j,\qquad
 E=\sqrt{\frac1{NH}\sum_{i,j}(e_{ij}/s_j)^2}.
 $$
 
-The implementation normalizes hidden states as
-$\tilde h=(h-\operatorname{mean}_i t_i)/s$. The mean cancels in the paired
-error, so the critic sees $(g_i-t_i)/s$. In v1 the coordinate scales came
+The implementation subtracts the mean positive target from each hidden state
+and divides coordinatewise by s. The mean cancels in the paired
+error, so the critic sees (gᵢ − tᵢ) / s. In v1 the coordinate scales came
 from absolute target states. Here they come from the desired edit, so small
 vocal edits are not measured against the much larger spread of unrelated
-hidden states. Median row RMS is one; overall RMS $E$ generally differs from
+hidden states. Median row RMS is one; overall RMS E generally differs from
 one. `teacher-audit.json` records both the normalization and initial noise.
 
 ### Paired-error game and noise
@@ -236,11 +236,11 @@ f_i=\epsilon_i+(g_i-t_i)/s,\qquad
 \sigma_0=\max(E/0.28,0.03).
 $$
 
-The v2 set spans three recorded schedules. **Metal** has $T=8000$ and its
+The v2 set spans three recorded schedules. **Metal** has T = 8000 and its
 original exponential anneal (the final recorded noise is about 1.537).
-**Pop and Hip-Hop** have $T=1600$ with a fixed hold of 1; Pop resumed with
+**Pop and Hip-Hop** have T = 1600 with a fixed hold of 1; Pop resumed with
 the hold after update 462. The other 13 controls, including both kept gender
-runs, use $T=1600$ and $\sigma_t=\max(\sigma_t^{\rm raw},1.3E)$.
+runs, use T = 1600 and hold the scheduled noise at a minimum of 1.3E.
 For those holds the exponential start exceeds the hold. Consequently the
 release does **not** reach noise 0.03 at update 1600. Per-run traces and
 normalization audits are included in `evidence/particle-gmix-1600-v2/`.
@@ -287,7 +287,7 @@ $$
 
 It is zero on other updates. The factor four compensates for the lazy
 frequency. A fresh subset of 64 particles, sampled without replacement, gives
-sample covariance $C$ with denominator 63. Its variance/covariance penalty is
+sample covariance C with denominator 63. Its variance/covariance penalty is
 
 $$
 \mathcal V(P_S)=\frac14\sum_{j=1}^4
@@ -296,7 +296,7 @@ $$
 $$
 
 There is no extra output MSE, lyric preservation or ending loss in teacher
-training. Adam uses betas $(0,0.999)$, zero weight decay and constant rates:
+training. Adam uses betas (0, 0.999), zero weight decay and constant rates:
 0.0006 for the adapter branches, 0.006 for the shared particles, and 0.0009 for
 the critic. After each update all learned adapter parameters enter an EMA:
 
@@ -315,7 +315,7 @@ The two evaluation lyric sheets stay excluded from fitting and selection.
 See [DISTILLATION.md](DISTILLATION.md) for the regression, refinement and
 held-out error equations and the resulting measurements.
 
-An ordinary student adds $sBAx$. ComfyUI fuses Q/K/V by concatenating their
+An ordinary student adds sBAx. ComfyUI fuses Q/K/V by concatenating their
 down matrices and placing their up matrices on a block diagonal: fused QKV
 rank 24, O rank 8, with alpha/rank preserved. Conversion is exact before BF16
 rounding; teacher-to-student distillation is an approximation. Standard

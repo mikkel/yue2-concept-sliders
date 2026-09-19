@@ -7,13 +7,15 @@ The teacher checkpoints and [training math](MATH.md) remain available.
 
 ## Projection regression
 
-The teacher adds $U f(Vx,P)$ and the initial student adds $UAx$. Retain $U$
-and fit $A$ through the origin on real AR inputs. With input rows in $X$,
-routed-feature rows in $Y$, and
-$D_{jj}=\sqrt{\max((X^TX)_{jj},10^{-12})}$, solve
+The teacher adds U f(Vx, P) and the initial student adds UAx. Retain U
+and fit A through the origin on real AR inputs. Put input rows in X and
+routed-feature rows in Y, then scale the input coordinates and solve:
 
 $$
-Z=XD^{-1},\qquad B=(Z^TZ+\lambda I)^{-1}Z^TY,\qquad A=B^TD^{-1}.
+\begin{aligned}
+D_{jj}&=\sqrt{\max((X^TX)_{jj},10^{-12})},\qquad Z=XD^{-1},\\
+B&=(Z^TZ+\lambda I)^{-1}Z^TY,\qquad A=B^TD^{-1}.
+\end{aligned}
 $$
 
 The calibration set uses the release's neutral training captions, excluding
@@ -22,7 +24,7 @@ three training rows. Each continuation has a 384-token guard and seeds
 4100–4102. Collect activations at teacher strengths zero and one. Q/K/V share
 one input covariance per layer; O has its own.
 
-Choose $\lambda$ from $10^{-4},10^{-3},10^{-2}$ on the fourth training row,
+Choose λ from 0.0001, 0.001 and 0.01 on the fourth training row,
 seed 4103. The selection score averages relative hidden steering MSE at the
 first music-token boundary and over the continuation at strengths 0.5 and 1.
 Both evaluation lyric sheets are excluded from fitting and selection.
@@ -30,7 +32,7 @@ Both evaluation lyric sheets are excluded from fitting and selection.
 ## Hidden-state refinement
 
 Starting from that regression, optimize both matrices for 100 Adam updates
-at learning rate $10^{-4}$ and gradient norm cap 1. The base and teacher stay
+at learning rate 0.0001 and gradient norm cap 1. The base and teacher stay
 frozen. Alternate continuation examples and broader training captions,
 sampling strength 0.5 or 1. The objective is
 
