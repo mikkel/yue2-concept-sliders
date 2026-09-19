@@ -142,9 +142,11 @@ teachers through regression and hidden-state matching.
 Both paths add a strength-scaled correction to the frozen projection:
 
 $$
-y=W_0x+s\Delta(x),\qquad
-\Delta_{\mathrm{LoRA}}(x)=BAx,\qquad
-\Delta_{\mathrm{particle}}(x)=U\phi([Vx;z(x)]).
+\begin{aligned}
+y&=W_0x+s\Delta(x),\\
+\Delta_{\mathrm{LoRA}}(x)&=BAx,\\
+\Delta_{\mathrm{particle}}(x)&=U\phi([Vx;z(x)]).
+\end{aligned}
 $$
 
 An ordinary LoRA compresses the input with A and expands it with B.
@@ -172,9 +174,12 @@ R, nonlinear bridge φ and up projection U. The learned cloud P contains
 128 four-dimensional vectors shared across this slider's branches:
 
 $$
-a=Vx,\qquad q=R(a),\qquad
-w=\operatorname{softmax}(Pq/\sqrt4),\qquad z=P^Tw,
-\qquad y=W_0x+s\,U\phi([a;z]).
+\begin{aligned}
+a&=Vx,\qquad q=R(a),\\
+w&=\operatorname{softmax}(Pq/\sqrt4),\\
+z&=P^Tw,\\
+y&=W_0x+s\,U\phi([a;z]).
+\end{aligned}
 $$
 
 The router has three width-16 hidden layers; the bridge has three width-48
@@ -208,11 +213,13 @@ Let eᵢ = tᵢ − nᵢ and H = 2048. Compute sample standard deviations over t
 RMS is one:
 
 $$
-d_j=\max(\operatorname{std}_i(e_{ij}),10^{-4}),\qquad
-m=\max\left(\operatorname{median}_i
-\sqrt{\frac1H\sum_j(e_{ij}/d_j)^2},10^{-4}\right),\qquad
-s_j=m\,d_j,\qquad
-E=\sqrt{\frac1{NH}\sum_{i,j}(e_{ij}/s_j)^2}.
+\begin{aligned}
+d_j&=\max(\operatorname{std}_i(e_{ij}),10^{-4}),\\
+\rho_i&=\sqrt{\frac1H\sum_j(e_{ij}/d_j)^2},\\
+m&=\max(\operatorname{median}_i\rho_i,10^{-4}),\\
+s_j&=m\,d_j,\\
+E&=\sqrt{\frac1{NH}\sum_{i,j}(e_{ij}/s_j)^2}.
+\end{aligned}
 $$
 
 The implementation subtracts the mean positive target from each hidden state
@@ -228,12 +235,14 @@ one. `teacher-audit.json` records both the normalization and initial noise.
 For each source draw one shared Gaussian vector for its real/fake pair:
 
 $$
-\epsilon_i\sim\mathcal N(0,\sigma_t^2I),\qquad
-r_i=\epsilon_i,\qquad
-f_i=\epsilon_i+(g_i-t_i)/s,\qquad
-\sigma_t^{\rm raw}=\sigma_0
-\left(\frac{0.03}{\sigma_0}\right)^{\min(t/T,1)},\qquad
-\sigma_0=\max(E/0.28,0.03).
+\begin{aligned}
+\epsilon_i&\sim\mathcal N(0,\sigma_t^2I),\\
+r_i&=\epsilon_i,\\
+f_i&=\epsilon_i+(g_i-t_i)/s,\\
+\sigma_t^{\rm raw}&=\sigma_0
+\left(\frac{0.03}{\sigma_0}\right)^{\min(t/T,1)},\\
+\sigma_0&=\max(E/0.28,0.03).
+\end{aligned}
 $$
 
 The v2 set spans three recorded schedules. **Metal** has T = 8000 and its
@@ -256,12 +265,15 @@ Afterward the critic independently RMS-normalizes the mean and elementwise
 maximum across tokens, concatenates them, and predicts a bounded score:
 
 $$
-X=\operatorname{reshape}_{8\times48}(Ae+b)+P_D,\qquad
-Z=\operatorname{AttentionBlock}(X),\qquad
-D(e)=8\tanh\left(
-\frac{u^T[\operatorname{RMSNorm}(\operatorname{mean}Z);
-\operatorname{RMSNorm}(\operatorname{max}Z)]+b_D}{8}
-\right).
+\begin{aligned}
+X&=\operatorname{reshape}_{8\times48}(Ae+b)+P_D,\\
+Z&=\operatorname{AttentionBlock}(X),\\
+v&=\begin{bmatrix}
+\operatorname{RMSNorm}(\operatorname{mean}Z)\\
+\operatorname{RMSNorm}(\operatorname{max}Z)
+\end{bmatrix},\\
+D(e)&=8\tanh\left(\frac{u^Tv+b_D}{8}\right).
+\end{aligned}
 $$
 
 The actual checkpoint setting is `gmix_t8_w48_l1`, with four heads and score
@@ -272,17 +284,19 @@ bound 8. Later trainer defaults are not a description of these trained files.
 Using paired relativistic logistic losses:
 
 $$
-L_D=\mathbb E\,\operatorname{softplus}(D(f)-D(r))+R_D,
-\qquad
-L_G=\mathbb E\,\operatorname{softplus}(D(r)-D(f))+\mathcal V(P_S).
+\begin{aligned}
+L_D&=\mathbb E\,\operatorname{softplus}(D(f)-D(r))+R_D,\\
+L_G&=\mathbb E\,\operatorname{softplus}(D(r)-D(f))+\mathcal V(P_S).
+\end{aligned}
 $$
 
 Every fourth update applies the lazy gradient cap
 
 $$
-R_D=4\cdot\frac12\left(
-\mathbb E_r[\max(0,\|\nabla_rD\|_2-1)^2]+
-\mathbb E_f[\max(0,\|\nabla_fD\|_2-1)^2]\right).
+\begin{aligned}
+c(v)&=\max(0,\|\nabla_vD\|_2-1)^2,\\
+R_D&=4\cdot\frac12\left(\mathbb E_r c(r)+\mathbb E_f c(f)\right).
+\end{aligned}
 $$
 
 It is zero on other updates. The factor four compensates for the lazy
@@ -290,9 +304,11 @@ frequency. A fresh subset of 64 particles, sampled without replacement, gives
 sample covariance C with denominator 63. Its variance/covariance penalty is
 
 $$
-\mathcal V(P_S)=\frac14\sum_{j=1}^4
-\max(0,1-\sqrt{C_{jj}+10^{-4}})
-+\frac14\sum_{j\ne k}C_{jk}^2.
+\begin{aligned}
+\mathcal V(P_S)={}&\frac14\sum_{j=1}^4
+\max(0,1-\sqrt{C_{jj}+10^{-4}})\\
+&+\frac14\sum_{j\ne k}C_{jk}^2.
+\end{aligned}
 $$
 
 There is no extra output MSE, lyric preservation or ending loss in teacher

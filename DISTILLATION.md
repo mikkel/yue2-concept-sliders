@@ -13,8 +13,10 @@ routed-feature rows in Y, then scale the input coordinates and solve:
 
 $$
 \begin{aligned}
-D_{jj}&=\sqrt{\max((X^TX)_{jj},10^{-12})},\qquad Z=XD^{-1},\\
-B&=(Z^TZ+\lambda I)^{-1}Z^TY,\qquad A=B^TD^{-1}.
+D_{jj}&=\sqrt{\max((X^TX)_{jj},10^{-12})},\\
+Z&=XD^{-1},\\
+B&=(Z^TZ+\lambda I)^{-1}Z^TY,\\
+A&=B^TD^{-1}.
 \end{aligned}
 $$
 
@@ -53,8 +55,10 @@ Use both base and teacher trajectories from the two held-out prompts, seed
 1709, at strengths 0.5 and 1. Report
 
 $$
-E=\frac{\|h_S-h_T\|^2}{\max(\|h_T-h_0\|^2,10^{-12})},\qquad
-C=\frac{(h_S-h_0)\cdot(h_T-h_0)}{\|h_S-h_0\|\|h_T-h_0\|}.
+\begin{aligned}
+E&=\frac{\|h_S-h_T\|^2}{\max(\|h_T-h_0\|^2,10^{-12})},\\
+C&=\frac{(h_S-h_0)\cdot(h_T-h_0)}{\|h_S-h_0\|\|h_T-h_0\|}.
+\end{aligned}
 $$
 
 Zero error means exact teacher agreement; one is the error from leaving the
