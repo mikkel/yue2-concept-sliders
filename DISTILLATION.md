@@ -59,10 +59,9 @@ Zero error means exact teacher agreement; one is the error from leaving the
 slider off. These measure hidden-state fidelity, not perceptual quality.
 The validation files also include norm ratios and sampled semantic-logit KL.
 
-Each control includes two matched four-way listening groups: Off, particle
-teacher, ordinary LoRA during AR only, and ordinary LoRA during AR plus
-acoustic-prefix processing. The latter two share the student's semantic
-sequence, exposing the loading-scope difference. All recordings use the native
+The listening gallery compares **Off**, **Particles** and **Distill** for each
+control. Distill applies the ordinary LoRA during autoregressive composition.
+All recordings use the native
 runtime with a 500-token diagnostic guard, 16 acoustic steps and seed 1709.
 These are approximately 20-second excerpts. They are not full-song tests.
 The Female and Male evaluation captions specify the opposite voice at Off;

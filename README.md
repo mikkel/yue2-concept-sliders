@@ -60,13 +60,12 @@ See [the full equations](MATH.md) and [training traces](https://huggingface.co/n
 
 ## Listen to v2
 
-[Open the matched v2 comparisons on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2).
-The model card has 64 audio players. All 256 original FLAC recordings and
-their MP3 listening copies are included: 128 teacher Off/On recordings and
-128 four-way distillation recordings. Each group keeps caption, lyrics and
-seed fixed. The ordinary-LoRA comparison also exposes the acoustic-prefix
-scope of standard ComfyUI loading. These are approximately 20-second native
-GPU excerpts; full ComfyUI GPU audio generation remains unvalidated.
+[Open the matched v2 comparisons on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2) · [Full samples](SAMPLES.md).
+The model card has 48 audio players, with **Off**, **Particles** and **Distill**
+in each row. Each group keeps caption, lyrics and seed fixed. Distill applies
+the ordinary LoRA during composition. Original recordings and sidecars remain
+in the sample folders. These are approximately 20-second native GPU excerpts;
+full ComfyUI GPU audio generation remains unvalidated.
 
 ## Reproduction and previous versions
 

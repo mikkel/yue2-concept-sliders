@@ -171,4 +171,5 @@ rank 24, O rank 8, with alpha/rank preserved. Conversion is exact before BF16
 rounding; teacher-to-student distillation is an approximation. Standard
 **Load LoRA**, MODEL **0**, CLIP **1**, also affects acoustic-prefix processing.
 The native particle custom node applies its correction only during AR
-generation. The included comparisons expose this scope difference.
+generation. The gallery's Distill examples apply the ordinary LoRA only during
+autoregressive composition.
