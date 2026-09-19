@@ -9,6 +9,87 @@ The embedded adapter-format identifier still ends in `ar-v1`: its tensor
 layout and inference architecture are unchanged. It is separate from the
 release version and the training formulation.
 
+## Why train with particles?
+
+The aim is to learn a useful change in YuE2's behavior while keeping the base
+model frozen. **G** is the trainable slider attached to YuE2; **D** is a critic
+that learns to recognize the remaining error against a positive-caption
+hidden target. G learns the correction through that adversarial signal.
+
+The particle cloud gives the adapter a shared, trainable set of features to
+draw on. Each projection routes its current input through those features,
+then combines them with its own low-rank features using a nonlinear network.
+The routing can change with the musical context. The variance/covariance
+penalty encourages the cloud to retain spread, while the critic gradient cap
+discourages overly steep critic responses. Together, these are
+the design rationale for a more flexible adapter and a manageable training
+game. Their separate effects require controlled experiments.
+
+The recipe draws on [ParticleGAN at revision `441fdf42`](https://github.com/255BITS/ParticleGAN/tree/441fdf42dd2c0905af312a303add422f700c0ac2):
+learned particles, relativistic adversarial losses, a gradient cap and
+variance/covariance regularization. Our YuE2 adapter uses input-dependent
+routing through the cloud inside transformer projections. The critic is
+needed during training only; the cloud and routing remain in the native
+adapter at inference. Distillation learns an ordinary LoRA that approximates
+this correction for standard loaders.
+
+## Historical evidence: why we pursued this recipe
+
+The following graph is restored from **v1**. It compares earlier **Metal,
+seed 7** experiments using the same frozen base, four prompt/lyric pairs and
+rank-8 attention targets. It motivated further work on the particle recipe.
+The v2 checkpoints use the revised formulation below and finish at 1,600
+updates; they are not the runs plotted here.
+
+![Historical v1 training curves: generator adversarial loss and hidden-target cosine for the earlier ordinary-LoRA GAN and routed-particle recipes.](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/assets/gan-training-stability.svg)
+
+[Full-size graph](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/assets/gan-training-stability.svg) · [Measurements](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/evidence/gan-stability/training-curves.csv) · [Recipes and provenance](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/evidence/gan-stability/provenance.json)
+
+| Historical recipe | Updates | Peak G adversarial loss | Update at peak |
+|---|---:|---:|---:|
+| Ordinary LoRA, original GAN recipe | 600 | 549.76 | 373 |
+| Routed particles, v1 recipe | 1,200 | 35.66 | 945 |
+
+Every logged update is shown without smoothing. The upper panel plots the
+generator's adversarial term, excluding particle regularization, on a log
+scale. The lower panel measures alignment with the hidden target. The earlier
+ordinary-LoRA run has a large loss spike and loses alignment; the particle
+run stays close to the target through the released **v1** Metal checkpoint.
+The dashed line marks the end of the 600-update run.
+
+This is evidence about the complete historical recipes. Their critics,
+normalization, noise, batching, optimizer settings and regularization also
+differ, so the graph cannot attribute the change to particles alone or rank
+audio quality from loss values. The ordinary-LoRA curve is an earlier GAN
+experiment; the current **Distill** adapters instead learn from particle
+teachers through regression and hidden-state matching.
+
+## Ordinary LoRA and the routed-particle adapter
+
+![Ordinary LoRA adds a fixed linear weight update. The routed-particle adapter adds input-dependent cloud routing and a nonlinear bridge before its up projection.](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/assets/lora-vs-particle.svg)
+
+[Full-size architecture diagram](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/assets/lora-vs-particle.svg)
+
+Both paths add a strength-scaled correction to the frozen projection:
+
+$$
+y=W_0x+s\Delta(x),\qquad
+\Delta_{\mathrm{LoRA}}(x)=BAx,\qquad
+\Delta_{\mathrm{particle}}(x)=U\phi([Vx;z(x)]).
+$$
+
+An ordinary LoRA compresses the input with $A$ and expands it with $B$.
+Their product is a fixed matrix, so the update can be merged as $W_0+sBA$.
+The particle adapter also routes the compressed input through its cloud to
+obtain $z(x)$. Its nonlinear bridge combines these features before $U$.
+The extra capability is nonlinear computation inside the adapter itself;
+the full base model remains nonlinear in both cases.
+
+**Distill** learns separate matrices $A,B$ to approximate the teacher's
+whole correction on representative activations. It trades that nonlinear
+inference path for the simple two-matrix update supported by ordinary LoRA
+loaders. The architecture diagram applies to both v1 and v2.
+
 ## Inference: a nonlinear correction in AR attention
 
 YuE2 has 28 autoregressive layers. Each slider modifies their Q, K, V and O
