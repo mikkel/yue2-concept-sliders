@@ -1,12 +1,45 @@
 # YuE2 Concept Sliders v2
 
-Sixteen voice and genre controls for **YuE2-3B**. Version 2 publishes the final
-**1,600-update EMA gmix teachers**, newly distilled rank-8 ordinary LoRAs,
-ComfyUI exports and matched listening comparisons.
+**One prompt. Sixteen ways to move the sound.** Change the voice or genre with sliders for YuE2-3B.
 
-[Download v2](https://github.com/mikkel/yue2-concept-sliders/releases/tag/v2) · [How it works and math](#how-the-sliders-learn) · [Distillation method and measurements](DISTILLATION.md) · [Native usage](USAGE.md) · [Live Space — v1 particles](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders)
+[Downloads](#choose-an-adapter) · [How it works](#how-the-sliders-learn) · [Live demo (v1)](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders)
+
+## Listen to v2
+
+**[▶ Play all 16 comparisons on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2)**
+
+Same caption, lyrics and seed. Compare **Off** (base), **Particles** (native slider),
+and **Distill** (ordinary LoRA). Each clip is about 20 seconds.
+
+| Try a control | Off | Particles | Distill |
+|---|---|---|---|
+| Female | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-off.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-teacher.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-plain-ar.mp3) |
+| Metal | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-off.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-teacher.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-plain-ar.mp3) |
+| House | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-off.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-teacher.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-plain-ar.mp3) |
+| Lo-fi | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-off.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-teacher.mp3) | [Play](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-plain-ar.mp3) |
+
+<details>
+<summary>Recording details and full samples</summary>
+
+[All recordings, captions and lyrics](SAMPLES.md)
+
+Each group uses seed **1709**. Particles and Distill apply the control during
+composition, so phrasing and arrangement can change. Female and Male use an
+opposite-voice caption at Off, then apply the target control to that same caption at On.
+
+The gallery uses the second held-out prompt, a 500-token diagnostic guard
+(about 20 seconds), and 16 acoustic steps. Native GPU recordings are provided
+as original FLAC and MP3 listening copies. The sample folders retain both
+held-out prompts, the original diagnostic recordings and caption/lyric
+sidecars. Full-song reliability and full ComfyUI
+GPU audio generation are unvalidated. Actual ComfyUI CPU loader, weight and
+particle-integration checks pass for the released formats.
+
+</details>
 
 ## Choose an adapter
+
+[Download v2](https://github.com/mikkel/yue2-concept-sliders/releases/tag/v2) · [Native usage](USAGE.md) · [Distillation method and measurements](DISTILLATION.md)
 
 | V2 option | Downloads | ComfyUI loading |
 |---|---|---|
@@ -19,23 +52,6 @@ Place files ending in `_comfyui.safetensors` in `ComfyUI/models/loras/`.
 Strength 0 is Off; 1 is the trained positive endpoint; 0.5 is intermediate.
 Negative strengths are unsupported. The ordinary students approximate the
 nonlinear teachers. QKV is fused to rank 24; O remains rank 8.
-
-## What changed in v2
-
-The inference branch still routes through 128 learned four-dimensional particles
-shared across 112 AR attention projections. Training now uses 512 seedbank
-sources per control, 32-token shared histories, paired-edit normalization and
-an eight-token, width-48 global-mix critic with four attention heads. Each
-critic token mixes the complete hidden state. The bounded critic score,
-paired shared noise, lazy gradient cap and particle variance/covariance penalty
-define the adversarial game.
-
-The catalog records the actual schedules: Metal retains the longer anneal;
-Pop and Hip-Hop hold noise at 1; the remaining controls use the per-run 1.3×
-edit-RMS hold. The final noise does not reach 0.03. Female and Male use the
-retained expanded-cue h13 runs. All 16 are final EMA checkpoints at update
-1600. This is a fixed-budget release; no listening-quality selection is claimed.
-See [the full equations](MATH.md) and [training traces](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/evidence/particle-gmix-1600-v2).
 
 ## Controls and downloads
 
@@ -58,14 +74,25 @@ See [the full equations](MATH.md) and [training traces](https://huggingface.co/n
 | Afrobeats | Interlocking percussion, melodic bass and buoyant guitar | [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/weights/particle-gmix-1600-v2/afrobeats_step1600.safetensors?download=true) | [ComfyUI](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/comfyui/afrobeats_v2_distilled_rank8_comfyui.safetensors?download=true) · [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/native/afrobeats_v2_distilled_rank8.safetensors?download=true) |
 | Lo-fi | Soft swung drums, mellow keys and gentle tape warmth | [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/weights/particle-gmix-1600-v2/lofi_step1600.safetensors?download=true) | [ComfyUI](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/comfyui/lofi_v2_distilled_rank8_comfyui.safetensors?download=true) · [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/native/lofi_v2_distilled_rank8.safetensors?download=true) |
 
-## Listen to v2
+## What changed in v2
 
-[Open the matched v2 comparisons on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2) · [Full samples](SAMPLES.md).
-The model card has 48 audio players, with **Off**, **Particles** and **Distill**
-in each row. Each group keeps caption, lyrics and seed fixed. Distill applies
-the ordinary LoRA during composition. Original recordings and sidecars remain
-in the sample folders. These are approximately 20-second native GPU excerpts;
-full ComfyUI GPU audio generation remains unvalidated.
+Version 2 publishes the final **1,600-update EMA gmix teachers**, newly
+distilled rank-8 ordinary LoRAs and ComfyUI exports for all 16 controls.
+
+The inference branch still routes through 128 learned four-dimensional particles
+shared across 112 AR attention projections. Training now uses 512 seedbank
+sources per control, 32-token shared histories, paired-edit normalization and
+an eight-token, width-48 global-mix critic with four attention heads. Each
+critic token mixes the complete hidden state. The bounded critic score,
+paired shared noise, lazy gradient cap and particle variance/covariance penalty
+define the adversarial game.
+
+The catalog records the actual schedules: Metal retains the longer anneal;
+Pop and Hip-Hop hold noise at 1; the remaining controls use the per-run 1.3×
+edit-RMS hold. The final noise does not reach 0.03. Female and Male use the
+retained expanded-cue h13 runs. All 16 are final EMA checkpoints at update
+1600. This is a fixed-budget release; no listening-quality selection is claimed.
+See [the full equations](MATH.md) and [training traces](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/evidence/particle-gmix-1600-v2).
 
 ## How the sliders learn
 
