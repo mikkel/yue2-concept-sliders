@@ -2,21 +2,21 @@
 
 **One prompt. Sixteen ways to move the sound.** Native particle sliders for the voice and genre of YuE2-3B.
 
-[Get the particle sliders](#get-the-particle-sliders) · [How it works](#how-the-sliders-learn) · [Live demo (v1)](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders)
+[Particle sliders](#get-the-particle-sliders) · [Standard LoRAs](#get-the-distilled-loras) · [How it works](#how-the-sliders-learn)
 
 ## Listen to v2
 
-**[▶ Hear all 16 particle sliders on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2)**
+**[▶ Hear all 16 particle sliders and their distills on Hugging Face](https://huggingface.co/ntc-ai/yue2-concept-sliders#listen-to-v2)**
 
-Play **Particles · On**, then compare with the base.
-Same caption, lyrics and seed; about 20 seconds per clip.
+Play **Particles · On** first. Distill is the standard-LoRA approximation;
+Off is the base. Same caption, lyrics and seed; about 20 seconds per clip.
 
-| Try a control | Particles · On | Off · base YuE2 |
-|---|---|---|
-| Female | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-teacher.mp3)** | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-off.mp3) |
-| Metal | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-teacher.mp3)** | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-off.mp3) |
-| House | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-teacher.mp3)** | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-off.mp3) |
-| Lo-fi | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-teacher.mp3)** | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-off.mp3) |
+| Try a control | Particles · On | Distill · standard LoRA | Off · base YuE2 |
+|---|---|---|---|
+| Female | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-teacher.mp3)** | [Compare distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-plain-ar.mp3) | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-off.mp3) |
+| Metal | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-teacher.mp3)** | [Compare distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-plain-ar.mp3) | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-off.mp3) |
+| House | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-teacher.mp3)** | [Compare distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-plain-ar.mp3) | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-off.mp3) |
+| Lo-fi | **[▶ Play particles](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-teacher.mp3)** | [Compare distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-plain-ar.mp3) | [Compare base](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-off.mp3) |
 
 <details>
 <summary>Recording details and full samples</summary>
@@ -72,37 +72,17 @@ Negative strengths are unsupported.
 | Afrobeats | Interlocking percussion, melodic bass and buoyant guitar | [Download](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/weights/particle-gmix-1600-v2/afrobeats_step1600.safetensors?download=true) |
 | Lo-fi | Soft swung drums, mellow keys and gentle tape warmth | [Download](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/weights/particle-gmix-1600-v2/lofi_step1600.safetensors?download=true) |
 
-<details>
-<summary>Ordinary LoRA alternative: comparisons and downloads</summary>
+## Get the distilled LoRAs
 
-These rank-8 distills approximate the native particle adapters for standard
-LoRA loaders. The samples use the same caption, lyrics and seed as the
-particle recordings above.
+The convenient option for standard LoRA loaders. These rank-8 distills
+approximate the particle adapters and can change the sound. Compare the
+recordings above before choosing.
 
 [Download all ComfyUI distills](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/yue2-v2-comfyui-loras.zip?download=true) · [Standard LoRA workflow](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/workflow.json?download=true) · [Method and measurements](DISTILLATION.md)
 
 Place files ending in `_comfyui.safetensors` in `ComfyUI/models/loras/`.
 Use standard **Load LoRA**, MODEL **0**, CLIP **1**. QKV is fused to rank 24;
 O remains rank 8.
-
-| Control | Ordinary LoRA sample |
-|---|---|
-| Female | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/female/row1-plain-ar.mp3) |
-| Male | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/male/row1-plain-ar.mp3) |
-| Pop | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/pop/row1-plain-ar.mp3) |
-| Hip-Hop | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/hiphop/row1-plain-ar.mp3) |
-| R&B | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/rnb/row1-plain-ar.mp3) |
-| Indie Rock | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/indie-rock/row1-plain-ar.mp3) |
-| Pop Punk | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/pop-punk/row1-plain-ar.mp3) |
-| Metal | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/metal/row1-plain-ar.mp3) |
-| Country | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/country/row1-plain-ar.mp3) |
-| Acoustic Folk | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/acoustic-folk/row1-plain-ar.mp3) |
-| House | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/house/row1-plain-ar.mp3) |
-| Disco Funk | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/disco-funk/row1-plain-ar.mp3) |
-| K-pop | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/kpop/row1-plain-ar.mp3) |
-| Reggaeton | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/reggaeton/row1-plain-ar.mp3) |
-| Afrobeats | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/afrobeats/row1-plain-ar.mp3) |
-| Lo-fi | [Play distill](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/samples/lofi/row1-plain-ar.mp3) |
 
 | Control | ComfyUI LoRA | Native LoRA |
 |---|---|---|
@@ -122,8 +102,6 @@ O remains rank 8.
 | Reggaeton | [ComfyUI](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/comfyui/reggaeton_v2_distilled_rank8_comfyui.safetensors?download=true) | [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/native/reggaeton_v2_distilled_rank8.safetensors?download=true) |
 | Afrobeats | [ComfyUI](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/comfyui/afrobeats_v2_distilled_rank8_comfyui.safetensors?download=true) | [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/native/afrobeats_v2_distilled_rank8.safetensors?download=true) |
 | Lo-fi | [ComfyUI](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/comfyui/lofi_v2_distilled_rank8_comfyui.safetensors?download=true) | [Native](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/distilled-rank8-v2/native/lofi_v2_distilled_rank8.safetensors?download=true) |
-
-</details>
 
 ## What changed in v2
 
@@ -427,4 +405,4 @@ each student records its exact teacher hash. Training and evaluation prompts
 contain sound descriptions. Weights retain CC BY-NC 4.0 terms.
 
 [V1 particle weights](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/weights/particle-1200-v1) · [V1 ordinary LoRAs](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/distilled-rank8-v1) · [V1 README and math at their original revision](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/f7c2e7ab024b6505f009ea9c6f7deb36e3373bc0).
-The live Space continues to run its pinned v1 particle deployment.
+The [live Space](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders) continues to run its pinned v1 particle deployment.
