@@ -47,7 +47,7 @@ Use the native particle adapters for the sound featured above.
 
 [ComfyUI custom node](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/comfyui/ntc_yue2_sliders/README.md) · [Particle workflow](https://huggingface.co/ntc-ai/yue2-concept-sliders/resolve/main/comfyui/ntc_yue2_sliders/workflow.json?download=true) · [Native loading guide](USAGE.md)
 
-In ComfyUI, load these weights with the **YuE2 Concept Slider** custom node.
+In ComfyUI, load these weights with the **YuE2 Particle Slider** custom node.
 Strength 0 is Off; 1 is the trained positive endpoint; 0.5 is intermediate.
 Negative strengths are unsupported.
 

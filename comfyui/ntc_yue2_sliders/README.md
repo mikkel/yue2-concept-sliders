@@ -1,6 +1,6 @@
-# YuE2 Concept Slider for ComfyUI
+# YuE2 Particle Slider for ComfyUI
 
-Load our native YuE2 routed-particle checkpoints with **YuE2 Concept Slider (ntc-ai)**. The node preserves every router, MLP and the shared particle cloud. It does not convert or merge the adapters into ordinary LoRA weights.
+Load our native YuE2 routed-particle checkpoints with **YuE2 Particle Slider (ntc-ai)**. The node preserves every router, MLP and the shared particle cloud. It does not convert or merge the adapters into ordinary LoRA weights.
 
 ## Install
 
@@ -19,7 +19,7 @@ Insert the slider node on the **CLIP** connection:
 
 ```text
 Load Checkpoint (YuE2) · CLIP
-    → YuE2 Concept Slider (ntc-ai) · CLIP
+    → YuE2 Particle Slider (ntc-ai) · CLIP
         → YuE2 Generate Music · clip
 ```
 

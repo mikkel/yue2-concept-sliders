@@ -1,4 +1,4 @@
-"""Native ntc-ai YuE2 concept sliders for ComfyUI's YuE2 CLIP model."""
+"""Native ntc-ai YuE2 particle sliders for ComfyUI's YuE2 CLIP model."""
 import math
 
 import folder_paths
@@ -25,7 +25,7 @@ class YuE2ConceptSlider:
         if not isinstance(clip.cond_stage_model, YuE2TEModel):
             raise ValueError("Connect the CLIP output of ComfyUI's native YuE2 checkpoint loader.")
         if not math.isfinite(strength) or not 0 <= strength <= 1:
-            raise ValueError("YuE2 concept-slider strength must be between 0 and 1.")
+            raise ValueError("YuE2 particle-slider strength must be between 0 and 1.")
         if strength == 0:
             return (clip,)
         host = clip.cond_stage_model
@@ -37,5 +37,6 @@ class YuE2ConceptSlider:
         return (result,)
 
 
+# Keep the registered node ID stable so existing workflows still load.
 NODE_CLASS_MAPPINGS = {"NTCYuE2ConceptSlider": YuE2ConceptSlider}
-NODE_DISPLAY_NAME_MAPPINGS = {"NTCYuE2ConceptSlider": "YuE2 Concept Slider (ntc-ai)"}
+NODE_DISPLAY_NAME_MAPPINGS = {"NTCYuE2ConceptSlider": "YuE2 Particle Slider (ntc-ai)"}
