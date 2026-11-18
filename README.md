@@ -405,4 +405,6 @@ each student records its exact teacher hash. Training and evaluation prompts
 contain sound descriptions. Weights retain CC BY-NC 4.0 terms.
 
 [V1 particle weights](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/weights/particle-1200-v1) · [V1 ordinary LoRAs](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/main/distilled-rank8-v1) · [V1 README and math at their original revision](https://huggingface.co/ntc-ai/yue2-concept-sliders/tree/f7c2e7ab024b6505f009ea9c6f7deb36e3373bc0).
-The [live Space](https://huggingface.co/spaces/ntc-ai/yue2-concept-sliders) continues to run its pinned v1 particle deployment.
+The [live Space](https://huggingface.co/spaces/ntc-ai/yue2-particle-sliders)
+uses the pinned v2 particle catalog. See the [Space release procedure](release-tools/README.md#release-the-space)
+for app changes.

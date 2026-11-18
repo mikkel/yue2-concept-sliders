@@ -1,5 +1,5 @@
 ---
-title: YuE2 Concept Sliders
+title: YuE2 Particle Sliders
 emoji: 🎚️
 colorFrom: purple
 colorTo: blue
@@ -11,18 +11,18 @@ python_version: "3.12"
 startup_duration_timeout: 1h
 license: cc-by-nc-4.0
 models:
-- ntc-ai/yue2-concept-sliders
+- ntc-ai/yue2-particle-sliders
 - m-a-p/YuE2-3B
 - m-a-p/YuE2-Vae
 ---
 
-# YuE2 concept sliders
+# YuE2 particle sliders
 
 Generate a same-caption, same-lyrics, same-seed Off/On comparison with any of 16 voice and genre controls. Strength 0 bypasses the adapter; +1 is the trained positive endpoint. Browse all 64 release comparisons without consuming GPU quota in the listening tab.
 
-[Model repo, weights and samples](https://huggingface.co/ntc-ai/yue2-concept-sliders) · [Native loading](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/USAGE.md) · [MiniMax Music 3 demo](https://huggingface.co/spaces/ntc-ai/minimax-music3-concept-sliders)
+[Model repo, weights and samples](https://huggingface.co/ntc-ai/yue2-particle-sliders) · [Native loading](https://huggingface.co/ntc-ai/yue2-particle-sliders/blob/main/USAGE.md) · [MiniMax Music 3 demo](https://huggingface.co/spaces/ntc-ai/minimax-music3-particle-sliders)
 
-These are the final EMA checkpoints from the 1,200-update routed-particle campaign. The native nonlinear adapters run only during AR planning/composition. The acoustic stage and VAE use frozen base weights. They require the included native loader and cannot be applied using a generic LoRA node.
+These are the v2 final EMA checkpoints (`particle-gmix-1600-v2`, 1,600 updates), the same routed-particle adapter format as v1. The native nonlinear adapters run only during AR planning/composition. The acoustic stage and VAE use frozen base weights. They require the included native loader and cannot be applied using a generic LoRA node.
 
 Song length defaults to **Automatic**: the native YuE2 sampler decides when to emit its ending token. No seconds-based cap is applied in this mode. Choose **Limited** to set an optional maximum duration. Off and On use the same caption, lyrics and seed, but can end at different times.
 

@@ -1,0 +1,7 @@
+{
+  "examples/baseline_s0_seed1709.mp3": "20486aba9fd86df454f5d2f24dd0e39fefb1208ca00608c02a83aade92f66a1e",
+  "examples/baseline_s0_seed2903.mp3": "25d2aa2a5dd631a4d2c165e8105afc792dc60139abea7f65cec0eb5fbd09f67c",
+  "examples/country_v2_s1.0_seed1709.mp3": "2de240d66d667c26528a4e9f60738343cf70f913f8b4daf841c2b86d966ba9b6",
+  "examples/house_v2_s1.0_seed1709.mp3": "8352ef4cfb2d8315be39e8d4090978a8c69c20362fc70e136fc2a72e746b5eaa",
+  "examples/metal_v2_s1.0_seed2903.mp3": "7fb43b8844a3d55468a8ab8c911c945e7845ad4cf18e154549ff37ce67e4c2b0"
+}
