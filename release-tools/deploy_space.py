@@ -112,7 +112,7 @@ def release(files, *, apply):
             raise RuntimeError("The tested GitHub revision is no longer main")
         token = os.environ.get("HF_SPACE_WRITE_TOKEN")
         if not token:
-            raise RuntimeError("Set HF_SPACE_WRITE_TOKEN in the production environment")
+            raise RuntimeError("Expected the GitHub workflow to mint a Space Trusted Publisher token")
         writer = HfApi(endpoint="https://huggingface.co", token=token)
         revision = writer.create_commit(
             SPACE,

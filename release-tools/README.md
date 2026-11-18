@@ -54,9 +54,10 @@ the Python source, compares the candidate files, and checks the recorded
 listening sample hashes on the Hub. When changing the app's model revision,
 update `space/catalog.json` alongside the model pin.
 
-Before merging the workflow, configure a fine-grained Hugging Face write token
-scoped to this Space. Store it as `HF_SPACE_WRITE_TOKEN` in the
-`huggingface-space-production` GitHub environment with the `main` branch policy.
+The release workflow uses the [Space Trusted Publisher](https://huggingface.co/spaces/ntc-ai/yue2-particle-sliders/settings).
+It exchanges the GitHub Actions identity for a short-lived token scoped to this
+Space. The publisher matches this repository, the `main` push, the exact
+workflow ref, and the `huggingface-space-production` environment.
 The running ZeroGPU revision and its Gradio endpoints must pass the workflow.
 After the first changed release, check build logs and play a recorded
 comparison in the live interface.
