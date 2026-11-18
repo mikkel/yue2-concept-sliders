@@ -45,3 +45,21 @@ checks every export with real ComfyUI and records the results in
 not covered by those checks. Source-provenance.json describes the standalone
 import adaptations; the fitting and refinement algorithms are the release's
 original implementations. Numerical results can vary across GPU/runtime versions.
+
+## Release the Space
+
+The production workflow publishes the tracked `space/` files to
+`ntc-ai/yue2-particle-sliders` after they reach `main`. Its plan compiles
+the Python source, compares the candidate files, and checks the recorded
+listening sample hashes on the Hub. When changing the app's model revision,
+update `space/catalog.json` alongside the model pin.
+
+Before merging the workflow, configure a fine-grained Hugging Face write token
+scoped to this Space. Store it as `HF_SPACE_WRITE_TOKEN` in the
+`huggingface-space-production` GitHub environment with the `main` branch policy.
+The running ZeroGPU revision and its Gradio endpoints must pass the workflow.
+After the first changed release, check build logs and play a recorded
+comparison in the live interface.
+
+To roll back a release, revert its `space/` changes on GitHub and verify the
+next `main` run. The Hub commit message records the source GitHub revision.

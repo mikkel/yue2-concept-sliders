@@ -1,4 +1,4 @@
-"""YuE2 concept sliders: native routed-particle adapters on AR composition."""
+"""YuE2 particle sliders: native routed-particle adapters on AR composition."""
 import os
 os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
@@ -26,10 +26,10 @@ from yue2.protocol import SongRequest
 from slider_runtime import ParticleSlider, attention_targets, sound_only
 from sound_guard import validate_sound
 
-REPO = "ntc-ai/yue2-concept-sliders"
+REPO = "ntc-ai/yue2-particle-sliders"
 RELEASE = json.loads(Path("catalog.json").read_text())
 CATALOG = {s["id"]: s for s in RELEASE["sliders"]}
-MODEL_REVISION = os.environ.get("SLIDER_REVISION", "fad542cb5ff2a0b09339a289398cca291e5cae7a")
+MODEL_REVISION = os.environ.get("SLIDER_REVISION", "31649319eee53e6da999cc4aff3e081d213f7911")
 MAX_SEED = 2**31 - 1
 
 print("Loading pinned YuE2 base and audio decoder...", flush=True)
@@ -156,15 +156,17 @@ def generate(concept: str, strength: float, caption: str, lyrics: str,
              progress=gr.Progress()):
     """Generate a YuE2 song with a voice or genre slider, optionally paired
     with a same-caption, same-lyrics, same-seed base render. Strength ranges
-    from zero (base) to one (trained positive endpoint). Automatic duration
+    from zero (base) to two: 0-1 is the trained range (one is the trained
+    positive endpoint); above 1.0 is experimental, beyond the trained range,
+    and may add artifacts. Automatic duration
     uses the native stopping behavior and ignores seconds. Limited duration
     uses seconds as an upper bound, which can cut a phrase short.
     Returns Off/On WAVs and details, including whether the token guard was hit.
     """
     if concept not in CATALOG:
         raise gr.Error("Choose a control from the catalog.")
-    if not math.isfinite(float(strength)) or not 0 <= float(strength) <= 1:
-        raise gr.Error("Strength must be between 0 and 1.")
+    if not math.isfinite(float(strength)) or not 0 <= float(strength) <= 2:
+        raise gr.Error("Strength must be between 0 and 2 (0-1 trained; above 1 experimental).")
     if duration_mode not in ("Automatic", "Limited"):
         raise gr.Error("Choose Automatic or Limited song length.")
     if duration_mode == "Limited" and (
@@ -232,7 +234,7 @@ def listening_pair(concept: str, comparison: str) -> tuple[str, str, str]:
         path = output / f"{side}.mp3"
         copyfile(cached, path)
         paths.append(str(path))
-    note = (f"**{spec['label']} · step 1200 · held-out row {sample['row'] + 1} · seed {sample['seed']}**\n\n"
+    note = (f"**{spec['label']} · step {spec['step']} · held-out row {sample['row'] + 1} · seed {sample['seed']}**\n\n"
             "Off 0 / On +1. Same caption and lyrics. Approximately 20-second excerpts.\n\n"
             f"**Caption**\n\n{sample['caption']}\n\n**Lyrics**\n\n{sample['lyrics']}")
     return paths[0], paths[1], note
@@ -240,7 +242,17 @@ def listening_pair(concept: str, comparison: str) -> tuple[str, str, str]:
 
 choices = [(s["label"], sid) for sid, s in CATALOG.items()]
 default = "female"
-blurb, caption_default, lyrics_default = example_for(default)
+blurb, _, lyrics_default = example_for(default)
+# Genre-neutral default: the release caption with its genre line and
+# electronic/synth instrumentation removed, so the default does not pull
+# every genre control toward electronic. Held-out captions still load per control.
+caption_default = """Global Metadata:
+BPM 106. Meter: 4/4. The verse is focused and the chorus opens into a fuller sound. A balanced studio mix with a clear lead, defined bass and modest room depth.
+Vocal Details:
+One adult lead vocalist. Melodic singing with clear words and natural phrasing. A clear solo lead stays in front throughout, with natural vocal detail and light room ambience.
+Arrangement:
+Verse: Short chords carry the harmony over a soft bass line and a sparse beat.
+Chorus: The short chords broaden and the rhythm adds a light accent at the section change, leaving space for the lead."""
 CSS = """
 .gradio-container {max-width: 1140px !important; margin: auto;}
 #hero {padding: 24px 0 14px;}
@@ -248,20 +260,21 @@ CSS = """
 #generate {min-height: 52px; font-size: 1.1rem;}
 footer {display:none !important;}
 """
-with gr.Blocks(title="YuE2 Concept Sliders") as demo:
-    gr.Markdown("""# YuE2 · Concept Sliders
+with gr.Blocks(title="YuE2 Particle Sliders") as demo:
+    gr.Markdown("""# YuE2 · Particle Sliders
 **One prompt. Sixteen ways to move the sound.**
 
 Shape the voice or arrangement with a slider. Compare the same caption, lyrics and seed with the control off and on.
 
-[Weights & listening examples](https://huggingface.co/ntc-ai/yue2-concept-sliders) · [MiniMax Music 3 demo](https://huggingface.co/spaces/ntc-ai/minimax-music3-concept-sliders)
+[Weights & listening examples](https://huggingface.co/ntc-ai/yue2-particle-sliders) · [MiniMax Music 3 demo](https://huggingface.co/spaces/ntc-ai/minimax-music3-particle-sliders)
 """, elem_id="hero")
     with gr.Tab("Create a comparison"):
         with gr.Row():
             with gr.Column(scale=1):
                 concept = gr.Dropdown(choices, value=default, label="Control")
                 description = gr.Markdown(blurb)
-                strength = gr.Slider(0, 1, value=1, step=.05, label="Strength · 0 off / 1 on")
+                strength = gr.Slider(0, 2, value=1, step=.05, label="Strength · 0 off / 1 on / up to 2 experimental",
+                    info="0–1 is the trained range. Above 1.0 is experimental: beyond the trained range and may add artifacts.")
                 caption = gr.Textbox(value=caption_default, label="Sound description", lines=9,
                     info="Describe instruments, voice, room and timing. Leave out real music names.")
                 lyrics = gr.Textbox(value=lyrics_default, label="Lyrics", lines=10)
@@ -304,7 +317,17 @@ Shape the voice or arrangement with a slider. Compare the same caption, lyrics a
         sample_notes = gr.Markdown()
         listen_button.click(listening_pair, [listen_concept, listen_index],
                             [sample_off, sample_on, sample_notes], api_name="listening_pair")
-    gr.Markdown("16 experimental controls · Final EMA checkpoints at 1,200 updates · [Native loading guide](https://huggingface.co/ntc-ai/yue2-concept-sliders/blob/main/USAGE.md)")
+    with gr.Accordion("Listen: slider off vs on", open=False):
+        ab_caption = " ".join(caption_default.split("\n"))
+        for genre, seed_ab, off_file, on_file in [
+                ("Metal", 2903, "baseline_s0_seed2903.mp3", "metal_v2_s1.0_seed2903.mp3"),
+                ("House", 1709, "baseline_s0_seed1709.mp3", "house_v2_s1.0_seed1709.mp3"),
+                ("Country", 1709, "baseline_s0_seed1709.mp3", "country_v2_s1.0_seed1709.mp3")]:
+            gr.Markdown(f"**{genre}** · seed {seed_ab} · caption: {ab_caption}")
+            with gr.Row():
+                gr.Audio(f"examples/{off_file}", label="Slider off", type="filepath")
+                gr.Audio(f"examples/{on_file}", label="Slider on (strength 1.0)", type="filepath")
+    gr.Markdown("16 experimental controls · Final v2 EMA checkpoints at 1,600 updates · [Native loading guide](https://huggingface.co/ntc-ai/yue2-particle-sliders/blob/main/USAGE.md)")
 
 demo.queue(default_concurrency_limit=1, max_size=12).launch(
     theme=gr.themes.Soft(primary_hue="violet", secondary_hue="blue"), css=CSS, mcp_server=True)
