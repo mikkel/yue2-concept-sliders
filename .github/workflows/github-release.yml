@@ -1,0 +1,67 @@
+name: Publish reviewed GitHub assets
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - release.json
+      - release-tools/publish_github_release.py
+      - release-tools/test_publish_github_release.py
+      - .github/workflows/github-release.yml
+  push:
+    branches: [main]
+    paths:
+      - release.json
+      - release-tools/publish_github_release.py
+      - release-tools/test_publish_github_release.py
+      - .github/workflows/github-release.yml
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate release tooling and request
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      tag: ${{ steps.request.outputs.tag }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - run: python -m unittest discover -s release-tools -p test_publish_github_release.py
+      - name: Check the reviewed request and source commit
+        id: request
+        if: ${{ hashFiles('release.json') != '' }}
+        run: |
+          python release-tools/publish_github_release.py validate
+          python -c 'import json; print("tag=" + json.load(open("release.json"))["tag"])' >> "$GITHUB_OUTPUT"
+
+  publish:
+    name: Verify and publish reviewed assets
+    if: ${{ github.repository == 'mikkel/yue2-concept-sliders' && github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.validate.outputs.tag != '' }}
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    permissions:
+      contents: write
+    concurrency:
+      group: github-reviewed-assets-${{ needs.validate.outputs.tag }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.11'
+      - name: Verify the asset bytes and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python release-tools/publish_github_release.py publish
