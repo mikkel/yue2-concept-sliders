@@ -1,0 +1,50 @@
+name: Publish Hugging Face model
+
+on:
+  pull_request:
+    paths:
+      - .github/hub-model-release.json
+      - .github/workflows/huggingface-model.yml
+  push:
+    branches: [main]
+    paths:
+      - .github/hub-model-release.json
+      - .github/workflows/huggingface-model.yml
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: .github
+      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@3802a37d977831b047c1e161ea86c5f7f4e690bb
+        with:
+          repo: ntc-ai/yue2-particle-sliders
+
+  publish:
+    if: github.repository == 'mikkel/yue2-concept-sliders' && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: huggingface-model-production
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: huggingface-model-production
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          sparse-checkout: .github
+      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@3802a37d977831b047c1e161ea86c5f7f4e690bb
+        with:
+          repo: ntc-ai/yue2-particle-sliders
+          publish: 'true'
