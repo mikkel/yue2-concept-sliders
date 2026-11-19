@@ -24,9 +24,10 @@ jobs:
         with:
           persist-credentials: false
           sparse-checkout: .github
-      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@3802a37d977831b047c1e161ea86c5f7f4e690bb
+      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@8d688d94eefddd453f364811da437e8454dd485d
         with:
           repo: ntc-ai/yue2-particle-sliders
+          verify-release-manifest: 'true'
 
   publish:
     if: github.repository == 'mikkel/yue2-concept-sliders' && github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -44,7 +45,8 @@ jobs:
         with:
           persist-credentials: false
           sparse-checkout: .github
-      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@3802a37d977831b047c1e161ea86c5f7f4e690bb
+      - uses: HyperGAN/particle-sliders/.github/actions/hub-model-release@8d688d94eefddd453f364811da437e8454dd485d
         with:
           repo: ntc-ai/yue2-particle-sliders
+          verify-release-manifest: 'true'
           publish: 'true'
